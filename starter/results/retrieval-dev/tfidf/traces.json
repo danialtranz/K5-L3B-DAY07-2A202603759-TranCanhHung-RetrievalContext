@@ -1,0 +1,1487 @@
+[
+  {
+    "query_id": "q01",
+    "split": "dev",
+    "question": "What is a database according to section 5.1.1?",
+    "strategy": "tfidf",
+    "top_k": 3,
+    "budget_chars": 800,
+    "filter": null,
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 1,
+        "evidence": "A database is a collection of data items that have a name and a value."
+      }
+    ],
+    "results": [
+      {
+        "id": "C_wiley_ddbms_ch5_00209",
+        "text": "Figure 5.1. A generic database example.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 2,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "figure",
+          "section": "5.1.1",
+          "figure_id": "wiley_ddbms_ch5_figure_5_1_p2",
+          "table_id": ""
+        },
+        "score": 0.3434465310210151,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00145",
+        "text": "te 1 and the second conflict is “W3(X@2), W2(X@2),” which requires T3 to commit before T2 at Site 2. Note that the two operations “W2(X@1), W3(X@2)” and “W3(X@1), W2(X@2)” are not considered conflicts since the items are different (they are stored at different sites.) Now let’s revisit the distributed situation we considered in Example 5.7. In this example, X is stored at Site 1 and Y is stored at Site 2. We apply the site information to the schedules that we formed earlier. Again, it is not clear which of the six possible schedules is formed globally but, as we will explain later, that is not important. We have called these schedules GS1, GS2, . . . , GS6 as shown below:\n\nGS1 = R1(X@1), W1(Y@2), R2(Y@2), W2(X@1) GS2 = R2(Y@2), W2(X@1), R1(X@1), W1(Y@2) GS3 = R1(X@1), R2(Y@2), W1(Y@2), W2(X@1) GS4 = R1(X@1), R2(Y@2), W2(X@1), W1(Y@2) GS5 = R2(Y@2), R1(X@1), W1(Y@2), W2(X@1) GS6 = R2(Y@2), R1(X@1), W2(X@1), W1(Y@2)\n\n228 CONTROLLING CONCURRENCY",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 45,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.4",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.2588899941155074,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00144",
+        "text": "re transaction T1 performs a read of X at Site 1 and then T2 performs a write on X at the same site. Obviously, these two operations are conflicting and both are happening at Site 1. The local concurrency control at Site 1 will detect this conflict and will require “T1 →T2” at this site. In this notation, data item “X@1” is not considered the same data item as “X@2.” In fact, X@1 and X@2 are two different copies of X and are stored at two different sites. Applying this concept to distributed systems, the global schedule “W2(X@1), W3(X@1), W3(X@2), W2(X@2)” contains two local conflicts. The first conflict is “W2(X@1), W3(X@1),” indicating that T2 must commit before T3 at Site 1 and the second conflict is “W3(X@2), W2(X@2),” which requires T3 to commit before T2 at Site 2.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 45,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.4",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.2575919310164542,
+        "hit": false
+      }
+    ],
+    "context": "[C_wiley_ddbms_ch5_00209 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 2]\nFigure 5.1. A generic database example.",
+    "context_ids": [
+      "C_wiley_ddbms_ch5_00209"
+    ],
+    "context_chars": 276,
+    "elapsed_ms": 0.7111000013537705,
+    "hit1": false,
+    "hit3": false,
+    "context_hit": false
+  },
+  {
+    "query_id": "q02",
+    "split": "dev",
+    "question": "When is a database said to be consistent?",
+    "strategy": "tfidf",
+    "top_k": 3,
+    "budget_chars": 800,
+    "filter": null,
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 2,
+        "evidence": "A database is said to be consistent if and only if the correctness criteria for all the data items of the database are satisfied."
+      }
+    ],
+    "results": [
+      {
+        "id": "C_wiley_ddbms_ch5_00019",
+        "text": "A transaction is a collection of user actions mapped to operations against the data items of the database that, if runs uninterrupted by other transactions and by system failures, trans- fers the database from one consistent state into another consistent state. If the transaction aborts, it does not change the state of the database. Figure 5.2 depicts the life cycle of a transaction as Jim Gray defines it. It is important to notice that when a transaction finishes (either successfully or unsuccessfully), the database is left in a consistent state. A successful termination, indicated by a commit, creates a new consistent state for the database, while an unsuccessful termination, caused by an abort, restores the consistent state prior to the start of the transaction. What is equally important is that during the execution of the transaction the database may or may not be in a consistent state.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 6,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.1.2.1",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.29943394661762635,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00024",
+        "text": "190 CONTROLLING CONCURRENCY\n\nmore than one transaction active. This schedule is called parallel or concurrent. The schedule “S2 = R1(X), R1(Y), R2(Y), W1(X), W2(Y), W1(Y)” is an example of a parallel schedule. It is not clear what the commitment order is for transactions T1 and T2 in this case. Figure 5.4 shows an example of a parallel schedule. Observation: Two or more transactions running in series maintain the consistency of the database. Figure 5.5 depicts two transactions running in series. It should be obvious that when transaction T1 starts the database is in Consistent State 1. Without interference, T1 transforms the database from Consistent State 1 to Consistent State 2. When T2 starts, it works on the database that is in Consistent State 2 and it transforms the database to Consistent State 3. Since we cannot expect to run all transactions in the system in series, we have to be able to determine if a parallel schedule preserves the consistency of the database.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 8,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.2.1.2",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.28198454392250294,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00004",
+        "text": "Each data item in the database has an associated cor- rectness assertion. For example, the social security number for an employee must be a unique value, age for an employee needs to be a positive number, an employee must work for one and only one department, the balance of an account needs to be positive and more than $100, and so on. These are all examples of assertions in a database. A database is said to be consistent if and only if the correctness criteria for all the data items of the database are satisfied.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 2,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.1.1",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.2631998646307408,
+        "hit": true
+      }
+    ],
+    "context": "[C_wiley_ddbms_ch5_00004 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 2]\nEach data item in the database has an associated cor- rectness assertion. For example, the social security number for an employee must be a unique value, age for an employee needs to be a positive number, an employee must work for one and only one department, the balance of an account needs to be positive and more than $100, and so on. These are all examples of assertions in a database. A database is said to be consistent if and only if the correctness criteria for all the data items of the database are satisfied.",
+    "context_ids": [
+      "C_wiley_ddbms_ch5_00004"
+    ],
+    "context_chars": 756,
+    "elapsed_ms": 0.4805999924428761,
+    "hit1": false,
+    "hit3": true,
+    "context_hit": true
+  },
+  {
+    "query_id": "q03",
+    "split": "dev",
+    "question": "What are the ACID properties of a transaction?",
+    "strategy": "tfidf",
+    "top_k": 3,
+    "budget_chars": 800,
+    "filter": null,
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 2,
+        "evidence": "There have been many references to the ACID properties (atomicity, con- sistency, isolation, and durability) of a transaction in the literature."
+      }
+    ],
+    "results": [
+      {
+        "id": "C_wiley_ddbms_ch5_00188",
+        "text": "ACID Properties The properties that a transaction maintains in a traditional DBMS. Aggressive TO Algorithm A version of the TO algorithm that tries to resolve con- flicts as soon as possible. ANSI American National Standards Institute. ANSI Isolation Levels The set of concurrency control isolation levels that are part of the ANSI standard (four levels). Atomicity A property of a transaction that requires all change or none of the changes of a transaction must be applied. Backward Recovery The act of recovering a database to a consistent state in the past. Blind Write The type of database write operation that does not require reading the value being changed.\n\n239 GLOSSARY",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 56,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.6",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.3080047059779,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00010",
+        "text": "he transaction completes, the database is in correct state if both accounts have a balance of $1000. If either account shows any other balance value, it would indicate that the database is in an inconsistent state (and Alice would probably be upset). In order to ensure that the database remains correct and consistent, there are four properties (the ACID properties we mentioned earlier) that every transaction must satisfy. • The atomicity property of a transaction indicates that either all of the operations of a transaction are carried out or none of them are carried out. This property is also known as the “all-or-nothing” property. • The consistency property of a transaction requires a transaction to be written correctly. It is the programmer’s responsibility to implement the code in the program correctly—so that the program carries out the intention of the transaction correctly.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 4,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.1.2",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.29111632103882684,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00005",
+        "text": "A transaction is a collection of operations performed against the data items of the database. There have been many references to the ACID properties (atomicity, con- sistency, isolation, and durability) of a transaction in the literature. Instead of simply repeating these properties, we will use an example to explain a transaction’s properties. In order to know what a transaction does, we need to know when it starts and when it ends. We do that by delineating the boundaries of the transaction either explicitly or implicitly. For our discussions, we will indicate the transaction boundaries using Begin−Tran and End−Tran. Note that when working interactively with the DBMS we may not need to use Begin−Tran and End−Tran. That is because, in most DBMSs, either every user’s operation is considered a transaction or the entire user’s session is considered as one large transaction. Similarly, when a programmer implements a transaction, the use of Begin−Tran and End−Tran might be required.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 2,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.1.2",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.2868672231688564,
+        "hit": true
+      }
+    ],
+    "context": "",
+    "context_ids": [],
+    "context_chars": 0,
+    "elapsed_ms": 0.44710002839565277,
+    "hit1": false,
+    "hit3": true,
+    "context_hit": false
+  },
+  {
+    "query_id": "q04",
+    "split": "dev",
+    "question": "How does Jim Gray redefine what a transaction is?",
+    "strategy": "tfidf",
+    "top_k": 3,
+    "budget_chars": 800,
+    "filter": null,
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 6,
+        "evidence": "A transaction is a collection of user actions mapped to operations against the data items of the database that, if runs uninterrupted by other transactions and by system failures, trans- fers the database from one consistent state into another consistent state."
+      }
+    ],
+    "results": [
+      {
+        "id": "C_wiley_ddbms_ch5_00018",
+        "text": "ping. We will discuss how isolation maintains the consistency of the database later in this chapter. Previously, we defined a transaction to be a collec- tion of operations against the data items of a database without talking about any of the properties the transaction must satisfy. Now that we have introduced transaction atomicity, consistency, isolation, and durability, we need to refine the definition of a transaction. Jim Gray [Gray81] defines a transaction as follows:",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 6,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.1.2",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.27771274177651356,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00019",
+        "text": "A transaction is a collection of user actions mapped to operations against the data items of the database that, if runs uninterrupted by other transactions and by system failures, trans- fers the database from one consistent state into another consistent state. If the transaction aborts, it does not change the state of the database. Figure 5.2 depicts the life cycle of a transaction as Jim Gray defines it. It is important to notice that when a transaction finishes (either successfully or unsuccessfully), the database is left in a consistent state. A successful termination, indicated by a commit, creates a new consistent state for the database, while an unsuccessful termination, caused by an abort, restores the consistent state prior to the start of the transaction. What is equally important is that during the execution of the transaction the database may or may not be in a consistent state.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 6,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.1.2.1",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.19802551704713509,
+        "hit": true
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00198",
+        "text": "Total Commitment Order The commitment order of all concurrent transactions in the system. Transaction A collection of reads, calculations, and writes of data items in a database. Transaction Monitor A component or subsystem of a DBE that is responsible for managing the execution of a transaction. Two-Phase Locking An approach to locking that disallows a transaction to request a lock after it has released a lock. Unrepeatable Read An isolation level that does not guarantee the same value for what is read, if the same data item is accessed by the same transaction more than once. View Serializability A serializability requirement that guarantees consistency of the database even though it does not produce a conflict serializable schedule. View Serializable Schedule A schedule that is equivalent to a serial schedule.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 60,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.6",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.1557445897228537,
+        "hit": false
+      }
+    ],
+    "context": "[C_wiley_ddbms_ch5_00018 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 6]\nping. We will discuss how isolation maintains the consistency of the database later in this chapter. Previously, we defined a transaction to be a collec- tion of operations against the data items of a database without talking about any of the properties the transaction must satisfy. Now that we have introduced transaction atomicity, consistency, isolation, and durability, we need to refine the definition of a transaction. Jim Gray [Gray81] defines a transaction as follows:",
+    "context_ids": [
+      "C_wiley_ddbms_ch5_00018"
+    ],
+    "context_chars": 714,
+    "elapsed_ms": 0.7902999641373754,
+    "hit1": false,
+    "hit3": true,
+    "context_hit": false
+  },
+  {
+    "query_id": "q05",
+    "split": "dev",
+    "question": "What is a schedule in multitransaction processing?",
+    "strategy": "tfidf",
+    "top_k": 3,
+    "budget_chars": 800,
+    "filter": null,
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 7,
+        "evidence": "A schedule is the total order of operations for a set of transactions. A schedule has sometimes been called a history in the industry."
+      }
+    ],
+    "results": [
+      {
+        "id": "C_wiley_ddbms_ch5_00023",
+        "text": "A schedule is the total order of operations for a set of transactions. A schedule has sometimes been called a history in the industry. When different transactions run in a system, they sometimes create a serial schedule and other times a parallel schedule. A serial schedule is one that contains transactions whose operations do not overlap in time. This means that at any point in time only one transaction is running in the system. This schedule is also known as a sequential schedule. The schedule “S1 = R1(X), R1(Y), W1(X), R2(Y), W2(Y)” is an example of a serial schedule. This schedule indicates that transaction T1 commits before T2 starts. We show this order as “T1 →T2,” where the “→” indicates commitment precedence. Figure 5.3 depicts an example of a serial schedule. A parallel schedule is one that may contain transactions whose operations do overlap in time. This means that at any point in time there can be",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 7,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.2.1",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.25471425699061834,
+        "hit": true
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00044",
+        "text": "195 MULTITRANSACTION PROCESSING SYSTEMS\n\nIn a distributed system, transactions run on one or more sites. Therefore, the global schedule consists of a collection of local schedules—each site involved has a local schedule that may or may not be serializable. It should be obvious that in a distributed system, if there is a local schedule that is not serializable, then the global schedule that contains it is not serializable. The question we need to address now is whether or not the global schedule is serializable when all local schedules are. The answer depends on whether or not the database is replicated. It should be rather obvious that if the database is not replicated there is no mutual consistency requirement. The mutual consistency requirement states that copies of data items of a database must have the same value. In a nonreplicated database, there is no mutual consistency requirement. As a result, as long as local schedules are serializable, the global schedule is serializable as well.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 13,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.2.4.1",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.23878345483561056,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00196",
+        "text": "tted Data An isolation requirement that allows transactions to read committed or uncommitted values. Read-Only Transaction A transaction that does not make any changes to the database (a query). Recoverable Schedules A schedule that can be recovered after a system or database failure of the system. Saga A long transaction that contains other transactions nested in it. Savepoint A consistent point in the life of Oracle transactions to which the database can be rolled back. Schedule The total order of operations of concurrent transactions. Sequential Schedule A schedule that only allows transactions to run serially (also known as serial schedule). Serial Schedule A schedule that only allows transactions to run serially. Serializability The requirement that forces the concurrency control of a database system to guarantee that any parallel schedule is equivalent to a serial schedule. Serializable Schedule A parallel schedule that is equivalent to a serial schedule.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 59,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.6",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.22506610164825566,
+        "hit": false
+      }
+    ],
+    "context": "",
+    "context_ids": [],
+    "context_chars": 0,
+    "elapsed_ms": 0.61039999127388,
+    "hit1": true,
+    "hit3": true,
+    "context_hit": false
+  },
+  {
+    "query_id": "q06",
+    "split": "dev",
+    "question": "What is a serial schedule?",
+    "strategy": "tfidf",
+    "top_k": 3,
+    "budget_chars": 800,
+    "filter": null,
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 7,
+        "evidence": "A serial schedule is one that contains transactions whose operations do not overlap in time."
+      }
+    ],
+    "results": [
+      {
+        "id": "C_wiley_ddbms_ch5_00023",
+        "text": "A schedule is the total order of operations for a set of transactions. A schedule has sometimes been called a history in the industry. When different transactions run in a system, they sometimes create a serial schedule and other times a parallel schedule. A serial schedule is one that contains transactions whose operations do not overlap in time. This means that at any point in time only one transaction is running in the system. This schedule is also known as a sequential schedule. The schedule “S1 = R1(X), R1(Y), W1(X), R2(Y), W2(Y)” is an example of a serial schedule. This schedule indicates that transaction T1 commits before T2 starts. We show this order as “T1 →T2,” where the “→” indicates commitment precedence. Figure 5.3 depicts an example of a serial schedule. A parallel schedule is one that may contain transactions whose operations do overlap in time. This means that at any point in time there can be",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 7,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.2.1",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.4581866947091713,
+        "hit": true
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00211",
+        "text": "Figure 5.3. An example of serial schedule.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 8,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "figure",
+          "section": "5.2.1.2",
+          "figure_id": "wiley_ddbms_ch5_figure_5_3_p8",
+          "table_id": ""
+        },
+        "score": 0.4479387678972794,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00196",
+        "text": "tted Data An isolation requirement that allows transactions to read committed or uncommitted values. Read-Only Transaction A transaction that does not make any changes to the database (a query). Recoverable Schedules A schedule that can be recovered after a system or database failure of the system. Saga A long transaction that contains other transactions nested in it. Savepoint A consistent point in the life of Oracle transactions to which the database can be rolled back. Schedule The total order of operations of concurrent transactions. Sequential Schedule A schedule that only allows transactions to run serially (also known as serial schedule). Serial Schedule A schedule that only allows transactions to run serially. Serializability The requirement that forces the concurrency control of a database system to guarantee that any parallel schedule is equivalent to a serial schedule. Serializable Schedule A parallel schedule that is equivalent to a serial schedule.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 59,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.6",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.4475962180149498,
+        "hit": false
+      }
+    ],
+    "context": "[C_wiley_ddbms_ch5_00211 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 8]\nFigure 5.3. An example of serial schedule.",
+    "context_ids": [
+      "C_wiley_ddbms_ch5_00211"
+    ],
+    "context_chars": 279,
+    "elapsed_ms": 0.39899995317682624,
+    "hit1": true,
+    "hit3": true,
+    "context_hit": false
+  },
+  {
+    "query_id": "q07",
+    "split": "dev",
+    "question": "When does a conflict occur between two transactions?",
+    "strategy": "tfidf",
+    "top_k": 3,
+    "budget_chars": 800,
+    "filter": null,
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 9,
+        "evidence": "A conflict occurs when two running transactions perform noncompatible operations on the same data item of the database."
+      }
+    ],
+    "results": [
+      {
+        "id": "C_wiley_ddbms_ch5_00166",
+        "text": "clock at S2, after a period of time, transactions generated at S1 are going to be much younger than the transactions generated at S2. This will cause S1’s transactions to be given a lower priority when they conflict with S2’s transactions. To solve this problem, we can either use a system clock with which all sites synchronize their local clocks or we can periodically synchronize all the sites’ clocks with each other. Using either approach will require a large number of messages. Because of this problem, we can use the logical clock readings at each site as part of the global timestamps. When using logical clock (LC) readings drifting can still occur. In this case, sites that generate more transactions have larger LC readings. This again will negatively impact the site’s transactions when conflicts occur. Let’s assume site S1 generates a lot more transactions than site S2 does within a given period of time.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 51,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.4.2",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.2244771735890396,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00190",
+        "text": "rite or two writes). Conflict Graph A graph that includes all conflicts across running transactions. Conflict Matrix A matrix that shows compatible and incompatible transactions’ oper- ations. Conflict Serializability A type of serializability that serializes conflicting operations from different transactions. Conflict Serializable Schedules A schedule that is conflict serializable. Conservative TO Algorithm A version of the TO algorithm that does not act on resolving conflicts immediately. Consistency A requirement that every transaction must satisfy. ConTracts A long transaction that consists of other long transactions. Database A collection of data items where each item has a name and a value. Database Consistency A requirement that guarantees database data items are con- sistent/correct. DDL Lock A type of lock that is placed on database dictionary items. Decision Support System A system that supports management of an organization in making business decisions.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 57,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.6",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.2029083117504598,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00026",
+        "text": "A conflict occurs when two running transactions perform noncompatible operations on the same data item of the database. Transactions perform either read or write operations on data items in the database. A conflict occurs when one transaction writes an item that another transaction is reading or writing. Figure 5.6 shows the conflict matrix for two transactions. As indicated in this matrix, the two transactions can read the same data item without causing any conflicts, but if either one of them writes to it, at any given point in time, then the other transaction cannot access it at all. When transactions run concurrently, the data items they change are not necessarily part of a consistent state of the database. As a result, isolation is required to hide these inconsistent data items. If isolation is not enforced, two conflicting transactions may cause some unexpected results. These unexpected results are called anomalies.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 9,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.2.2",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.2013458509840369,
+        "hit": true
+      }
+    ],
+    "context": "",
+    "context_ids": [],
+    "context_chars": 0,
+    "elapsed_ms": 0.5336000467650592,
+    "hit1": false,
+    "hit3": true,
+    "context_hit": false
+  },
+  {
+    "query_id": "q08",
+    "split": "dev",
+    "question": "What anomaly can arise from schedule S1 where T1 reads X and later T2 writes X before T1 reads again?",
+    "strategy": "tfidf",
+    "top_k": 3,
+    "budget_chars": 800,
+    "filter": null,
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 9,
+        "evidence": "Each of these schedules produces some anomalies that need to be dealt with by the scheduler. These anomalies are unrepeatable read anomaly (in S1), reading uncom- mitted data (or dirty read) anomaly (in S2), and overwriting uncommitted data anomaly (in S3)."
+      }
+    ],
+    "results": [
+      {
+        "id": "C_wiley_ddbms_ch5_00028",
+        "text": "In schedule S1, transaction T1 reads data item X before transaction T2 writes it. The value that is returned by R1(X) is the value of X in the database. The problem with this schedule is that it can lead to unrepeatable reads. Assume that T1 issues a second read on X. This changes the schedule to “S1 = . . . R1(X), . . . , W2(X), . . . , R1(X).” It is easy to see that T1 reads a different value when it issues the second R1(X) from the value it gets when it issues the first R1(X). This is because T2 changes the value of X before T1 reads it again.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 9,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.2.2",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.4523871844773964,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00029",
+        "text": "In schedule S2, transaction T2 reads the value that transaction T1 has written. The problem with this schedule is that it allows trans- action T2 to see the uncommitted value of X, which was modified by transaction T1. This can lead to schedule “S2 = . . . W1(X), . . . , R2(X), . . . , W2(X), . . . , Commit T2, . . . , Abort T1.” In the modified schedule, T2 reads the value of X written by T1, computes a new value for X based on this value, writes it to the database, and then commits the new value to the database. This is OK as long as T1 also commits. But, the",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 9,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.2.2.1",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.33177843504812715,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00050",
+        "text": "S1 = R1(X), W1(X), W2(X), W3(X) S2 = R1(X), W2(X), W1(X), W3(X) Schedule S1 is a serial schedule and preserves the consistency of the database. Schedule S2, on the other hand, is not a serial schedule. However, S2 is equivalent to S1 and therefore preserves the consistency of the database as well. Since S is equivalent to S1, S also preserves the consistency of the database. What is peculiar about schedules S1 and S2 is that they allow blind writes—transactions that write a data item without having read it first. Note that in S1 and S2, whatever transactions T1 and T2 write into the database for X is immediately overwritten by what T3 writes and hence it does not matter what T1 and T2 have read or written. This type of schedule is called view serializability by Silberschatz and Korth [Silberschatz05]. According to Silberschatz and Korth, view serializability is based on the concept of view equivalency.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 14,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.2.4.4",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.2861827682771147,
+        "hit": false
+      }
+    ],
+    "context": "[C_wiley_ddbms_ch5_00028 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 9]\nIn schedule S1, transaction T1 reads data item X before transaction T2 writes it. The value that is returned by R1(X) is the value of X in the database. The problem with this schedule is that it can lead to unrepeatable reads. Assume that T1 issues a second read on X. This changes the schedule to “S1 = . . . R1(X), . . . , W2(X), . . . , R1(X).” It is easy to see that T1 reads a different value when it issues the second R1(X) from the value it gets when it issues the first R1(X). This is because T2 changes the value of X before T1 reads it again.",
+    "context_ids": [
+      "C_wiley_ddbms_ch5_00028"
+    ],
+    "context_chars": 789,
+    "elapsed_ms": 0.7112000021152198,
+    "hit1": false,
+    "hit3": false,
+    "context_hit": false
+  },
+  {
+    "query_id": "q09",
+    "split": "dev",
+    "question": "What is a blind write?",
+    "strategy": "tfidf",
+    "top_k": 3,
+    "budget_chars": 800,
+    "filter": null,
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 10,
+        "evidence": "What causes the problem is allowing transactions to write an item without first reading it. This type of write is known as blind write."
+      }
+    ],
+    "results": [
+      {
+        "id": "C_wiley_ddbms_ch5_00031",
+        "text": "d T2 needs to be aborted as well. Note that these writes are not preceded by a read in the schedule. What causes the problem is allowing transactions to write an item without first reading it. This type of write is known as blind write. An example of a blind write is shown in the following SQL statement:",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 10,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.2.2.2",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.5567046992032944,
+        "hit": true
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00179",
+        "text": "ular, we must examine all the write requests that are at the front of all write queues at this site. If any of these write operations are for an older transaction than the read request we are processing, we must delay the read. If all these write operations are for younger transactions, we may proceed with the read operation. Otherwise, the read is delayed. To take care of write–write conflicts, a write request at front of a write queue at a given site is processed only when all write requests at the front of all write queues at this site are from younger transactions. Otherwise, the write is delayed. To deal with a read–write conflict, similar checks are necessary when a read request in the front of a queue at a site is processed. A careful reader observes that this distributed implementation serializes the transactions based on their age and therefore reduces the amount of parallelism across transactions from different sites.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 54,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.4.2.1",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.2373986013847989,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00050",
+        "text": "S1 = R1(X), W1(X), W2(X), W3(X) S2 = R1(X), W2(X), W1(X), W3(X) Schedule S1 is a serial schedule and preserves the consistency of the database. Schedule S2, on the other hand, is not a serial schedule. However, S2 is equivalent to S1 and therefore preserves the consistency of the database as well. Since S is equivalent to S1, S also preserves the consistency of the database. What is peculiar about schedules S1 and S2 is that they allow blind writes—transactions that write a data item without having read it first. Note that in S1 and S2, whatever transactions T1 and T2 write into the database for X is immediately overwritten by what T3 writes and hence it does not matter what T1 and T2 have read or written. This type of schedule is called view serializability by Silberschatz and Korth [Silberschatz05]. According to Silberschatz and Korth, view serializability is based on the concept of view equivalency.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 14,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.2.4.4",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.20950472730771177,
+        "hit": false
+      }
+    ],
+    "context": "[C_wiley_ddbms_ch5_00031 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 10]\nd T2 needs to be aborted as well. Note that these writes are not preceded by a read in the schedule. What causes the problem is allowing transactions to write an item without first reading it. This type of write is known as blind write. An example of a blind write is shown in the following SQL statement:",
+    "context_ids": [
+      "C_wiley_ddbms_ch5_00031"
+    ],
+    "context_chars": 543,
+    "elapsed_ms": 0.33710000570863485,
+    "hit1": true,
+    "hit3": true,
+    "context_hit": true
+  },
+  {
+    "query_id": "q10",
+    "split": "dev",
+    "question": "When are two schedules said to be equivalent?",
+    "strategy": "tfidf",
+    "top_k": 3,
+    "budget_chars": 800,
+    "filter": null,
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 10,
+        "evidence": "Two schedules are said to be equivalent if they both produce the same state for the database and every transaction reads the same value(s) and writes the same value(s)."
+      }
+    ],
+    "results": [
+      {
+        "id": "C_wiley_ddbms_ch5_00034",
+        "text": "t the allowed parallel schedule is equivalent to a serial schedule for the same set of transactions. Two schedules are said to be equivalent if they both produce the same state for the database and every transaction reads the same value(s) and writes the same value(s). Figure 5.7 shows a parallel schedule and an equivalent serial schedule for it. It is easy to see why these schedules are equivalent. T1 reads the value of X, which was in the database before transaction T1 started in both schedules. Therefore, the value of X written by T1 is the same in both schedules. T2 reads the same value for X in both schedules since the same value is written by T1 in both schedules. Since T2 sees the same value for X, it also produces the same value for X in both schedules. With the same reasoning, both schedules produce the same value for Y when they finish.\n\n193 MULTITRANSACTION PROCESSING SYSTEMS",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 10,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.2.3",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.2968648670973417,
+        "hit": true
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00051",
+        "text": "cording to Silberschatz and Korth, view serializability is based on the concept of view equivalency. Schedules S1 and S2 are view equivalent if they satisfy the following two conditions: • Condition 1: A transaction that performs a read for a data item, reads the same value in both schedules. • Condition 2: The final value of X is written by the same transaction in both schedules. For schedules S1 and S2, the only read operation is R1(X). The value that R1(X) returns to T1 is the value that was initially in the database—what was written by T0 before T1, T2, and T3 started. This satisfies Condition 1. Condition 2 also holds true for these two schedules since the final value of X is written by T3. As a result, S, S1, and S2 are view equivalent. As we argued before, these three schedules are conflict serializable. It is not too difficult to observe that every conflict serializable schedule is also view serializable.\n\n197 MULTITRANSACTION PROCESSING SYSTEMS",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 14,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.2.4.4",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.19014853632441858,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00037",
+        "text": "perations it has already granted—the operations that are part of the schedule at this point in time. If the request is not in conflict with any operation already scheduled, then the scheduler grants the operation and adds that operation to the schedule. If, on the other hand, the request is in conflict with one or more of the already granted operations, the scheduler only grants the operation if the resulting schedule will still remain serializable. Otherwise, the requesting transaction is rolled back. It is neither practical nor efficient for the scheduler to only look for serial schedules that are equivalent to the current parallel schedules. That is because serial schedules can slow down even a high-powered database server’s CPUs. The scheduler needs to allow those parallel schedules that are equivalent to a serial schedule to run to promote concurrency and increase throughput.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 11,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.2.4",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.17714544253885484,
+        "hit": false
+      }
+    ],
+    "context": "",
+    "context_ids": [],
+    "context_chars": 0,
+    "elapsed_ms": 0.45979995047673583,
+    "hit1": true,
+    "hit3": true,
+    "context_hit": false
+  },
+  {
+    "query_id": "q11",
+    "split": "dev",
+    "question": "What does it mean for a schedule to be serializable?",
+    "strategy": "tfidf",
+    "top_k": 3,
+    "budget_chars": 800,
+    "filter": null,
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 11,
+        "evidence": "A schedule is said to be serializable if it is equivalent to a serial schedule."
+      }
+    ],
+    "results": [
+      {
+        "id": "C_wiley_ddbms_ch5_00198",
+        "text": "Total Commitment Order The commitment order of all concurrent transactions in the system. Transaction A collection of reads, calculations, and writes of data items in a database. Transaction Monitor A component or subsystem of a DBE that is responsible for managing the execution of a transaction. Two-Phase Locking An approach to locking that disallows a transaction to request a lock after it has released a lock. Unrepeatable Read An isolation level that does not guarantee the same value for what is read, if the same data item is accessed by the same transaction more than once. View Serializability A serializability requirement that guarantees consistency of the database even though it does not produce a conflict serializable schedule. View Serializable Schedule A schedule that is equivalent to a serial schedule.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 60,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.6",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.284404133865303,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00196",
+        "text": "tted Data An isolation requirement that allows transactions to read committed or uncommitted values. Read-Only Transaction A transaction that does not make any changes to the database (a query). Recoverable Schedules A schedule that can be recovered after a system or database failure of the system. Saga A long transaction that contains other transactions nested in it. Savepoint A consistent point in the life of Oracle transactions to which the database can be rolled back. Schedule The total order of operations of concurrent transactions. Sequential Schedule A schedule that only allows transactions to run serially (also known as serial schedule). Serial Schedule A schedule that only allows transactions to run serially. Serializability The requirement that forces the concurrency control of a database system to guarantee that any parallel schedule is equivalent to a serial schedule. Serializable Schedule A parallel schedule that is equivalent to a serial schedule.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 59,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.6",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.2768252581163847,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00098",
+        "text": "ubscripts, instead of an actual physical clock reading for timestamps, will simplify our discussion. The main philosophy behind the TO approach is to coordinate the access to a data item based on the age of the transactions involved. TO concurrency control based algorithms force transactions to commit in the order dictated by their ages. It is expected that an older transaction must commit before a younger transaction, since the older transaction enters the system before the younger one does. For example, if transactions T1, T2, . . . , T10 are all running in the system, then TO concurrency control expects that T1 must commit before T2, T2 must commits before T3, and so on. This does not mean that all 10 transactions will commit, but it does mean that those that do commit must be committed in the proper order (using their ages).",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 27,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.3.2",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.25392756876129957,
+        "hit": false
+      }
+    ],
+    "context": "",
+    "context_ids": [],
+    "context_chars": 0,
+    "elapsed_ms": 0.4553999751806259,
+    "hit1": false,
+    "hit3": false,
+    "context_hit": false
+  },
+  {
+    "query_id": "q12",
+    "split": "dev",
+    "question": "Using the total commitment order graph, when is a schedule serializable?",
+    "strategy": "tfidf",
+    "top_k": 3,
+    "budget_chars": 800,
+    "filter": null,
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 12,
+        "evidence": "we say a schedule is serializable if and only if its TCO is acyclic."
+      }
+    ],
+    "results": [
+      {
+        "id": "C_wiley_ddbms_ch5_00043",
+        "text": "a centralized DBMS, a schedule is serializable if and only if it is equivalent to a serial schedule. The scheduler checks for conflicts between each pair of transactions’ operations. For each conflict found, it imposes a partial commitment order (PCO). Putting all such partial commitment orders together, the system generates a total commitment order graph. Existence of a cycle in this graph indicates that the schedule is not serializable. Otherwise, the schedule is serializable to one or possibly more serial executions of the transactions in the schedule. The scheduler checks for serializability every time a TM requests to schedule a new operation. If granting the operation does not result in a cycle in the total commitment order of all transactions whose operations have already been scheduled, the operation is granted and the new operation is scheduled. Otherwise, the requesting transaction is rolled back.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 12,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.2.4",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.47251616313992917,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00041",
+        "text": "le, we conclude that the schedule is serializable if and only if none of the PCOs are contradictory. We can validate that there is no contradiction among PCOs by forming a graph that contains all PCOs and checking the graph for nonexistence of cycle(s). We call this graph the total commitment order (TCO) graph. To summarize the above discussion, we say a schedule is serializable if and only if its TCO is acyclic. Let’s consider the schedule “S1 = R1(X), R2(X), W2(X), W1(X).” Example 5.3 There are three conflicts in this schedule between transactions T1 and T2. The first conflict is between R1(X) and W2(X). Because of this conflict, T1 must commit before T2 commits. We show this by the order “T1 →T2.” The conflict between R2(X) and W1(X) requires that “T2 →T1.” The conflict between W2(X) and W1(X) requires that “T2 →T1.” As a result, the total commitment order graph has a cycle in it.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 12,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.2.4",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.3975571499695815,
+        "hit": true
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00198",
+        "text": "Total Commitment Order The commitment order of all concurrent transactions in the system. Transaction A collection of reads, calculations, and writes of data items in a database. Transaction Monitor A component or subsystem of a DBE that is responsible for managing the execution of a transaction. Two-Phase Locking An approach to locking that disallows a transaction to request a lock after it has released a lock. Unrepeatable Read An isolation level that does not guarantee the same value for what is read, if the same data item is accessed by the same transaction more than once. View Serializability A serializability requirement that guarantees consistency of the database even though it does not produce a conflict serializable schedule. View Serializable Schedule A schedule that is equivalent to a serial schedule.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 60,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.6",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.32185814636198534,
+        "hit": false
+      }
+    ],
+    "context": "",
+    "context_ids": [],
+    "context_chars": 0,
+    "elapsed_ms": 0.5104000447317958,
+    "hit1": false,
+    "hit3": true,
+    "context_hit": false
+  },
+  {
+    "query_id": "q13",
+    "split": "dev",
+    "question": "In a replicated database, when is schedule S globally serializable?",
+    "strategy": "tfidf",
+    "top_k": 3,
+    "budget_chars": 800,
+    "filter": null,
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 14,
+        "evidence": "In a replicated database, schedule S is globally serializable if and only if all local schedules are serializable and the order of commitment for two conflicting transactions is the same at every site where the two transactions run."
+      }
+    ],
+    "results": [
+      {
+        "id": "C_wiley_ddbms_ch5_00048",
+        "text": "To consider mutual consistency in a replicated Serializability in Replicated Databases database, we need to extend the local serializability definition. In a replicated database, schedule S is globally serializable if and only if all local schedules are serializable and the order of commitment for two conflicting transactions is the same at every site where the two transactions run. Applying these requirements to our example, we see that for conflicting transactions T1 and T2, at the LA site the commitment order is “T1 → T2” but in NY, the commitment order is “T2 →T1.” Since the two transactions do not commit in the same order across both sites, they leave the database copies in an inconsistent state. The serializability concept we have Serializable Schedules discussed so far is known as conflict serializability, which was first discussed in [Eswaran76]. Although it is true that conflict serializable schedules produce a consistent database, they are not the only schedules that do so.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 14,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.2.4.2",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.3637615437779236,
+        "hit": true
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00044",
+        "text": "195 MULTITRANSACTION PROCESSING SYSTEMS\n\nIn a distributed system, transactions run on one or more sites. Therefore, the global schedule consists of a collection of local schedules—each site involved has a local schedule that may or may not be serializable. It should be obvious that in a distributed system, if there is a local schedule that is not serializable, then the global schedule that contains it is not serializable. The question we need to address now is whether or not the global schedule is serializable when all local schedules are. The answer depends on whether or not the database is replicated. It should be rather obvious that if the database is not replicated there is no mutual consistency requirement. The mutual consistency requirement states that copies of data items of a database must have the same value. In a nonreplicated database, there is no mutual consistency requirement. As a result, as long as local schedules are serializable, the global schedule is serializable as well.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 13,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.2.4.1",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.35481327383717937,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00196",
+        "text": "tted Data An isolation requirement that allows transactions to read committed or uncommitted values. Read-Only Transaction A transaction that does not make any changes to the database (a query). Recoverable Schedules A schedule that can be recovered after a system or database failure of the system. Saga A long transaction that contains other transactions nested in it. Savepoint A consistent point in the life of Oracle transactions to which the database can be rolled back. Schedule The total order of operations of concurrent transactions. Sequential Schedule A schedule that only allows transactions to run serially (also known as serial schedule). Serial Schedule A schedule that only allows transactions to run serially. Serializability The requirement that forces the concurrency control of a database system to guarantee that any parallel schedule is equivalent to a serial schedule. Serializable Schedule A parallel schedule that is equivalent to a serial schedule.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 59,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.6",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.2525361917677523,
+        "hit": false
+      }
+    ],
+    "context": "",
+    "context_ids": [],
+    "context_chars": 0,
+    "elapsed_ms": 0.47959998482838273,
+    "hit1": true,
+    "hit3": true,
+    "context_hit": false
+  },
+  {
+    "query_id": "q14",
+    "split": "dev",
+    "question": "Is every view serializable schedule also conflict serializable?",
+    "strategy": "tfidf",
+    "top_k": 3,
+    "budget_chars": 800,
+    "filter": null,
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 15,
+        "evidence": "However, not every view serializable schedule is conflict serializable."
+      }
+    ],
+    "results": [
+      {
+        "id": "C_wiley_ddbms_ch5_00052",
+        "text": "However, not every view serializable schedule is conflict serializable. Schedule “S2 = R1(X), W2(X), W1(X), W3(X)” is not conflict serializable but it is view serializable as discussed above. Silberschatz and Korth also show that the problem of checking if a schedule is view serializable is a NP-complete problem. Therefore, finding an efficient or even feasible algorithm to check for view serializability is extremely unlikely. Recoverable schedules are those schedules that allow recovery of the database to a consistent state after the failure of one or more trans- actions. As an example, assume schedule “S = R1(X), W1(X), R2(X), W2(X), C2, R1(Y).” This schedule is conflict serializable to “T1 →T2.” But, this is only true if T1 eventually commits. On the other hand, if T1 aborts in addition to rolling back T1, what T2 has written to the database needs to also be undone by rolling back T2. Furthermore, every transaction that used what T2 wrote to the database must also be rolled back.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 15,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.2.4.4",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.5231164658777531,
+        "hit": true
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00051",
+        "text": "cording to Silberschatz and Korth, view serializability is based on the concept of view equivalency. Schedules S1 and S2 are view equivalent if they satisfy the following two conditions: • Condition 1: A transaction that performs a read for a data item, reads the same value in both schedules. • Condition 2: The final value of X is written by the same transaction in both schedules. For schedules S1 and S2, the only read operation is R1(X). The value that R1(X) returns to T1 is the value that was initially in the database—what was written by T0 before T1, T2, and T3 started. This satisfies Condition 1. Condition 2 also holds true for these two schedules since the final value of X is written by T3. As a result, S, S1, and S2 are view equivalent. As we argued before, these three schedules are conflict serializable. It is not too difficult to observe that every conflict serializable schedule is also view serializable.\n\n197 MULTITRANSACTION PROCESSING SYSTEMS",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 14,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.2.4.4",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.36436275148461633,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00198",
+        "text": "Total Commitment Order The commitment order of all concurrent transactions in the system. Transaction A collection of reads, calculations, and writes of data items in a database. Transaction Monitor A component or subsystem of a DBE that is responsible for managing the execution of a transaction. Two-Phase Locking An approach to locking that disallows a transaction to request a lock after it has released a lock. Unrepeatable Read An isolation level that does not guarantee the same value for what is read, if the same data item is accessed by the same transaction more than once. View Serializability A serializability requirement that guarantees consistency of the database even though it does not produce a conflict serializable schedule. View Serializable Schedule A schedule that is equivalent to a serial schedule.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 60,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.6",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.2785447852100593,
+        "hit": false
+      }
+    ],
+    "context": "",
+    "context_ids": [],
+    "context_chars": 0,
+    "elapsed_ms": 0.3638000343926251,
+    "hit1": true,
+    "hit3": true,
+    "context_hit": false
+  },
+  {
+    "query_id": "q15",
+    "split": "dev",
+    "question": "What is a saga according to Garcia-Molina?",
+    "strategy": "tfidf",
+    "top_k": 3,
+    "budget_chars": 800,
+    "filter": null,
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 16,
+        "evidence": "A saga is an LLT that is written as a series of transactions that can be interleaved with other transactions."
+      }
+    ],
+    "results": [
+      {
+        "id": "C_wiley_ddbms_ch5_00063",
+        "text": "r those transactions that have used the results of one or more transactions contained within a saga. To address this issue, Garcia-Molina and his colleagues introduced the concept of nested sagas [Garcia- Molina91]. In a nested saga, a transaction within a saga can be a saga itself, and therefore contain steps that can also be compensated.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 17,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.2.5.1",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.48630943883130734,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00058",
+        "text": "Garcia-Molina introduced the concept of sagas [Garcia-Molina87] to allow for management of long transactions. A saga is an LLT that is written as a series of transactions that can be interleaved with other transactions. Transactions within a saga must be carried out in the order specified. But, a transaction within the saga can be committed in an interleaved fashion with respect to the other transactions outside the saga. This means that the subresults of a transaction are released to other transactions or sagas. Both the concept of a saga and its implementation are relatively simple, but they have the potential to improve performance significantly for certain classes of applications. It should be obvious that as long as a saga completely commits, releasing the results of one or more transactions within a saga to other transactions has no potential performance issues. The problem is when a saga cannot commit completely.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 16,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.2.5",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.41755910050080247,
+        "hit": true
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00201",
+        "text": "Consistency and Predicate Locks in a Database System,” Communications of the ACM, pp. 624–633, 1976. [Garcia-Molina87] Garcia-Molina, H., and Salem, K., “Sagas,” in Proceedings of the ACM SIGMOD International Conference on Management of Data, pp. 249–259, 1987. [Garcia-Molina91] Garcia-Molina, H., Salem, K., Gawlick, D., Klein, J., and Kleissner, K. “Modeling Long-Running Activities as Nested Sagas,” Database Engineering, Vol. 14, No. 3, pp. 10–25, 1991. [Gray81] Gray, J., “Transaction Concept: Virtues and Limitations,” in Proceedings of the 7th International Conference on Very Large Databases, September 1981. [Herman79] Herman, D., and Verjus, J., “An Algorithm for Maintaining Consistency of Multiple Copies,” in Proceedings of 1st International Conference on Distributed Computing Systems, pp. 625–631, 1979.\n\n243 EXERCISES",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 60,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.6",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.2475246881681842,
+        "hit": false
+      }
+    ],
+    "context": "[C_wiley_ddbms_ch5_00063 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 17]\nr those transactions that have used the results of one or more transactions contained within a saga. To address this issue, Garcia-Molina and his colleagues introduced the concept of nested sagas [Garcia- Molina91]. In a nested saga, a transaction within a saga can be a saga itself, and therefore contain steps that can also be compensated.",
+    "context_ids": [
+      "C_wiley_ddbms_ch5_00063"
+    ],
+    "context_chars": 579,
+    "elapsed_ms": 0.3992000129073858,
+    "hit1": false,
+    "hit3": true,
+    "context_hit": false
+  },
+  {
+    "query_id": "q16",
+    "split": "dev",
+    "question": "What are the two basic approaches to enforcing isolation in a centralized system?",
+    "strategy": "tfidf",
+    "top_k": 3,
+    "budget_chars": 800,
+    "filter": null,
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 19,
+        "evidence": "There are two basic approaches to enforcing isolation in a centralized system. They are based on the concepts of locking and timestamping."
+      }
+    ],
+    "results": [
+      {
+        "id": "C_wiley_ddbms_ch5_00071",
+        "text": "The scheduler is a part of the concurrency control module of the DBE. There are two basic approaches to enforcing isolation in a centralized system. They are based on the concepts of locking and timestamping. Locking-based concurrency control algo- rithms use locking to isolate the data items that one transaction is using from other transactions. Although we focus our discussion on locking data items, in reality, lock granularity may be different. For example, one can lock a table row, a database page, a tablespace, or the entire database. We will discuss the impact of locking granularity on performance later in this chapter. Timestamping does not use locking to isolate data items. Instead, timestamps are used to order transactions and their operations in the schedule. Sometimes timestamps are used in conjunction with locking to improve performance. We can also classify the concurrency control algorithms based on when serializabil- ity is enforced.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 19,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.3",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.26157446683538466,
+        "hit": true
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00001",
+        "text": "Before we discuss how concurrency control applies to the centralized and distributed databases, it is important to understand the terminology that we are using to describe the different approaches and issues involved. In particular, we need to have a better understanding of exactly what a database and a transaction are.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 1,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.1",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.23917252795791688,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00017",
+        "text": "Lack of isolation is the cause of the inconsistency of the database in both of these two scenarios. In the first scenario, the value of Y that was written by T1 was lost, and in the second scenario, the value of Y that was written by T2 was lost. Similar issues can occur when the temporary values of one transaction are seen by other transactions. In environments such as banking systems or airline reservation systems, there are a large number of transactions that run concurrently against the database. In concurrent transaction processing systems like these, the isolation property enables each transac- tion to perceive itself as the only transaction running in the system. The concurrency control subsystem of the DBMS achieves this perception by enforcing transaction iso- lation using either locking or timestamping. We will discuss how isolation maintains the consistency of the database later in this chapter.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 6,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.1.2",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.21199481888025215,
+        "hit": false
+      }
+    ],
+    "context": "[C_wiley_ddbms_ch5_00001 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 1]\nBefore we discuss how concurrency control applies to the centralized and distributed databases, it is important to understand the terminology that we are using to describe the different approaches and issues involved. In particular, we need to have a better understanding of exactly what a database and a transaction are.",
+    "context_ids": [
+      "C_wiley_ddbms_ch5_00001"
+    ],
+    "context_chars": 558,
+    "elapsed_ms": 0.5692999693565071,
+    "hit1": true,
+    "hit3": true,
+    "context_hit": false
+  },
+  {
+    "query_id": "q17",
+    "split": "dev",
+    "question": "Why does one-phase locking fail to always enforce serializability?",
+    "strategy": "tfidf",
+    "top_k": 3,
+    "budget_chars": 800,
+    "filter": null,
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 20,
+        "evidence": "transactions using 1PL do not keep their locks long enough to ensure serializability—the locks are released prematurely."
+      }
+    ],
+    "results": [
+      {
+        "id": "C_wiley_ddbms_ch5_00077",
+        "text": "y—the locks are released prematurely. To ensure serializability, two-phase locking must be utilized. Two-phase locking (2PL) [Eswaran76] is a locking approach in which transactions do not interleave their lock acquisition and lock release. The approach consists of two phases. In the first phase, transactions only acquire locks and do not release any lock until all the locks they need have been granted. In the second phase, transactions start releasing locks and do not request any more locks. That is why the first phase of this locking approach is known as growing phase while the second phase is known as shrinking phase. The growing and shrinking terms reflect the number of locks a transaction is holding at any given point in time during its execution.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 20,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.3.1",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.281263570872482,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00076",
+        "text": "st on data item X by transaction j; and finally LRj(x) indicates a release of lock by transaction j. To see the actual schedule that has been formed by using one-phase locking, we need to remove the lock and unlock requests from the schedule. Doing so results in “S = R1(X), W1(X), R2(X), R2(Y), W2(Y), R1(Y), W1(Y)” as the schedule. This schedule is not serializable since the PCOs “T1 →T2” and “T2 →T1” cannot both be satisfied. What is the problem with one-phase locking and why does it produce schedules that are not serializable? This approach is too aggressive in releasing the locks acquired by a transaction. The idea of releasing the locks as soon as possible to provide for more parallelism causes the schedule to be nonserializable. In other words, transactions using 1PL do not keep their locks long enough to ensure serializability—the locks are released prematurely. To ensure serializability, two-phase locking must be utilized.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 20,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.3.1",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.23173307196513473,
+        "hit": true
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00218",
+        "text": "Figure 5.10. Two-phase locking alternatives.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 21,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "figure",
+          "section": "5.3.1.2",
+          "figure_id": "wiley_ddbms_ch5_figure_5_10_p21",
+          "table_id": ""
+        },
+        "score": 0.22682344993070225,
+        "hit": false
+      }
+    ],
+    "context": "[C_wiley_ddbms_ch5_00218 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 21]\nFigure 5.10. Two-phase locking alternatives.",
+    "context_ids": [
+      "C_wiley_ddbms_ch5_00218"
+    ],
+    "context_chars": 282,
+    "elapsed_ms": 0.4403999773785472,
+    "hit1": false,
+    "hit3": true,
+    "context_hit": false
+  },
+  {
+    "query_id": "q18",
+    "split": "dev",
+    "question": "What are the two phases of two-phase locking?",
+    "strategy": "tfidf",
+    "top_k": 3,
+    "budget_chars": 800,
+    "filter": null,
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 20,
+        "evidence": "That is why the first phase of this locking approach is known as growing phase while the second phase is known as shrinking phase."
+      }
+    ],
+    "results": [
+      {
+        "id": "C_wiley_ddbms_ch5_00077",
+        "text": "y—the locks are released prematurely. To ensure serializability, two-phase locking must be utilized. Two-phase locking (2PL) [Eswaran76] is a locking approach in which transactions do not interleave their lock acquisition and lock release. The approach consists of two phases. In the first phase, transactions only acquire locks and do not release any lock until all the locks they need have been granted. In the second phase, transactions start releasing locks and do not request any more locks. That is why the first phase of this locking approach is known as growing phase while the second phase is known as shrinking phase. The growing and shrinking terms reflect the number of locks a transaction is holding at any given point in time during its execution.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 20,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.3.1",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.41021877466274154,
+        "hit": true
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00218",
+        "text": "Figure 5.10. Two-phase locking alternatives.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 21,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "figure",
+          "section": "5.3.1.2",
+          "figure_id": "wiley_ddbms_ch5_figure_5_10_p21",
+          "table_id": ""
+        },
+        "score": 0.3870386808928643,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00219",
+        "text": "Figure 5.11. Example of two-phase locking with deadlock.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 22,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "figure",
+          "section": "5.3.1.2",
+          "figure_id": "wiley_ddbms_ch5_figure_5_11_p22",
+          "table_id": ""
+        },
+        "score": 0.35641368128939543,
+        "hit": false
+      }
+    ],
+    "context": "[C_wiley_ddbms_ch5_00218 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 21]\nFigure 5.10. Two-phase locking alternatives.\n\n[C_wiley_ddbms_ch5_00219 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 22]\nFigure 5.11. Example of two-phase locking with deadlock.",
+    "context_ids": [
+      "C_wiley_ddbms_ch5_00218",
+      "C_wiley_ddbms_ch5_00219"
+    ],
+    "context_chars": 578,
+    "elapsed_ms": 0.5700000328943133,
+    "hit1": true,
+    "hit3": true,
+    "context_hit": false
+  },
+  {
+    "query_id": "q19",
+    "split": "dev",
+    "question": "Does 2PL prevent deadlocks?",
+    "strategy": "tfidf",
+    "top_k": 3,
+    "budget_chars": 800,
+    "filter": null,
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 22,
+        "evidence": "Although 2PL guarantees serializability, it does not prevent deadlocks"
+      }
+    ],
+    "results": [
+      {
+        "id": "C_wiley_ddbms_ch5_00234",
+        "text": "Figure 5.26. Deadlocks in Oracle.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 43,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "figure",
+          "section": "5.4",
+          "figure_id": "wiley_ddbms_ch5_figure_5_26_p43",
+          "table_id": ""
+        },
+        "score": 0.291132677169624,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00152",
+        "text": "ntation, the central lock manager sees all lock requests from all sites and enforces 2PL principles. In the distributed implementation, the conflict must be detected by at least one site but may be detected by more than one site. In a distributed system, when the control of 2PL is given to one site, the algorithm is called centralized 2PL. Alsberg and Day first proposed the centralized 2PL in 1976 [Alsberg76]. When the control is shared by multiple sites, the algorithm is called primary copy 2PL and, finally, when the lock responsibility is given to all sites, the algorithm is called distributed 2PL. Centralized 2PL is an implementation of the two-phase locking approach in a distributed system where one site is designated as the central lock manager (CLM). All the sites in the environment know where the CLM is. Each site is directed to obtain locks, according to 2PL rules, from the CLM. To request a lock, a TM sends a lock request to the CLM instead of its local lock manager.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 47,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.4.1",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.1638149254938519,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00079",
+        "text": "ransactions hold all their locks until just before they commit is known as strict two-phase locking. Strict 2PL provides for the least amount of parallelism between two conflicting transactions. Figure 5.10 illustrates the two alternatives for 2PL. In 2PL, if a schedule contains a transaction that needs to lock a data item that is already locked in a conflicting mode by another transaction, the transaction needing the lock will wait until it has been granted the lock. This wait is necessary to guarantee that the schedule of running conflicting transactions is always serializable.\n\n204 CONTROLLING CONCURRENCY\n\nApplying 2PL to the two transactions in Figure 5.9 results in many schedules including the following three schedules. Schedule S1 is based on the application of strict 2PL while schedules S2 and S3 result from the application of (nonstrict) 2PL. All three schedules are serializable.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 21,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.3.1.2",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.16129229026416822,
+        "hit": false
+      }
+    ],
+    "context": "[C_wiley_ddbms_ch5_00234 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 43]\nFigure 5.26. Deadlocks in Oracle.",
+    "context_ids": [
+      "C_wiley_ddbms_ch5_00234"
+    ],
+    "context_chars": 271,
+    "elapsed_ms": 0.26460003573447466,
+    "hit1": false,
+    "hit3": false,
+    "context_hit": false
+  },
+  {
+    "query_id": "q20",
+    "split": "dev",
+    "question": "According to TABLE 5.1, which ANSI isolation level disallows dirty reads, unrepeatable reads, and phantoms?",
+    "strategy": "tfidf",
+    "top_k": 3,
+    "budget_chars": 800,
+    "filter": null,
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 25,
+        "evidence": "Level 4\nSerializable\nNo\nNo\nNo"
+      }
+    ],
+    "results": [
+      {
+        "id": "C_wiley_ddbms_ch5_00241",
+        "text": "TABLE 5.1 ANSI Isolation Levels\nLevel\nIsolation Name\nDirty Reads\nUnrepeatable Reads\nPhantom\nLevel 1\nRead Uncommitted\nMaybe\nMaybe\nMaybe\nLevel 2\nRead Committed\nNo\nMaybe\nMaybe\nLevel 3\nRepeatable Reads\nNo\nNo\nMaybe\nLevel 4\nSerializable\nNo\nNo\nNo",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 25,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "table",
+          "section": "5.3.1.4",
+          "figure_id": "",
+          "table_id": "wiley_ddbms_ch5_table_5_1_p25"
+        },
+        "score": 0.34572910885063707,
+        "hit": true
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00028",
+        "text": "In schedule S1, transaction T1 reads data item X before transaction T2 writes it. The value that is returned by R1(X) is the value of X in the database. The problem with this schedule is that it can lead to unrepeatable reads. Assume that T1 issues a second read on X. This changes the schedule to “S1 = . . . R1(X), . . . , W2(X), . . . , R1(X).” It is easy to see that T1 reads a different value when it issues the second R1(X) from the value it gets when it issues the first R1(X). This is because T2 changes the value of X before T1 reads it again.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 9,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.2.2",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.17678302811749028,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00198",
+        "text": "Total Commitment Order The commitment order of all concurrent transactions in the system. Transaction A collection of reads, calculations, and writes of data items in a database. Transaction Monitor A component or subsystem of a DBE that is responsible for managing the execution of a transaction. Two-Phase Locking An approach to locking that disallows a transaction to request a lock after it has released a lock. Unrepeatable Read An isolation level that does not guarantee the same value for what is read, if the same data item is accessed by the same transaction more than once. View Serializability A serializability requirement that guarantees consistency of the database even though it does not produce a conflict serializable schedule. View Serializable Schedule A schedule that is equivalent to a serial schedule.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 60,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.6",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.1748562109012807,
+        "hit": false
+      }
+    ],
+    "context": "[C_wiley_ddbms_ch5_00241 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 25]\nTABLE 5.1 ANSI Isolation Levels\nLevel\nIsolation Name\nDirty Reads\nUnrepeatable Reads\nPhantom\nLevel 1\nRead Uncommitted\nMaybe\nMaybe\nMaybe\nLevel 2\nRead Committed\nNo\nMaybe\nMaybe\nLevel 3\nRepeatable Reads\nNo\nNo\nMaybe\nLevel 4\nSerializable\nNo\nNo\nNo",
+    "context_ids": [
+      "C_wiley_ddbms_ch5_00241"
+    ],
+    "context_chars": 477,
+    "elapsed_ms": 0.6874999962747097,
+    "hit1": true,
+    "hit3": true,
+    "context_hit": true
+  }
+]

@@ -5,9 +5,50 @@
 | `agentic.py` | Khung agent ví dụ với số lượt search, top-k và context budget có thể cấu hình |
 | `baseline.py` | TF-IDF lexical baseline, chạy offline |
 | `convert_day6.py` | Chuyển một số trường JSON từ Day 6 |
+| `export_day6.py` | Export chunk strategy C từ Day 6 `lab.db` + copy chroma |
+| `build_benchmark.py` | Convert + align gold + thêm 4 câu abstain + `cases.json` |
+| `run_retrieval_bench.py` | Benchmark tfidf / dense / hybrid / hybrid_filter / hybrid_wide |
+| `run_agent_bench.py` | Agent loop trên cases (LLM hoặc extractive) |
+| `llm_controller.py` | OpenAI/OpenRouter tool-calling controller |
+| `extractive_controller.py` | Offline fallback khi thiếu/expired API key |
+| `retrieval/` | MiniLM + Chroma C + TF-IDF + Hybrid RRF |
 | `agent_metrics.py` | Tổng hợp nhãn đánh giá do bạn tự chấm |
 
-Starter **chưa phải solution hoàn chỉnh**. Bạn phải nối model và vector store thật, triển khai ít nhất 3 phương pháp retrieval do bạn chọn, gồm dense trên vector store Day 6. Mock chỉ dùng để test code.
+## 0. Solution runbook (bài nộp)
+
+```bash
+pip install -r requirements.txt
+# 1) Export Day 6 (cần sibling repo Day 6 hoặc --day6-data)
+python starter/export_day6.py --output starter/data/raw --copy-runtime --runtime-dir starter/data
+python starter/build_benchmark.py --raw-chunks starter/data/raw/day6_chunks_raw.json --raw-questions starter/data/raw/day6_questions_raw.json --output starter/data/converted
+
+# 2) Retrieval suite
+python starter/run_retrieval_bench.py --chunks starter/data/converted/chunks.json --questions starter/data/converted/questions.json --split dev --output starter/results/retrieval-dev
+python starter/run_retrieval_bench.py --chunks starter/data/converted/chunks.json --questions starter/data/converted/questions.json --split test --methods tfidf,hybrid_wide,hybrid_filter --output starter/results/retrieval-test
+
+# 3) Agent với model thật (starter/.env: OPENAI_API_KEY + CHAT_MODEL; reasoning models cần REASONING_EFFORT=none)
+python starter/run_agent_bench.py --cases starter/data/converted/cases.json --chunks starter/data/converted/chunks.json --questions starter/data/converted/questions.json --split test --retriever hybrid_wide --budget 5000 --top-k 5 --controller llm --output starter/results/agent-test-hybrid_wide
+python starter/run_agent_bench.py --cases starter/data/converted/cases.json --chunks starter/data/converted/chunks.json --questions starter/data/converted/questions.json --split dev --retriever hybrid_wide --budget 5000 --top-k 5 --controller llm --output starter/results/agent-dev-hybrid_wide
+python starter/agent_metrics.py --cases starter/data/converted/cases.json --traces starter/results/agent-test-hybrid_wide/traces.json --reviews starter/results/agent-test-hybrid_wide/reviews.json --split test --output starter/results/agent-test-hybrid_wide/summary_metrics.json
+```
+
+Cấu hình đã chọn: **hybrid_wide** + **LLM controller**. Báo cáo: `report/individual/2A202603759_TranCanhHung.md`.
+
+### Web UI (agentic + IEEE cites)
+
+```powershell
+# Terminal 1 — API
+cd starter
+python app.py
+# Terminal 2 — FE
+cd starter\web
+npm install
+npm run dev
+```
+
+Mở http://127.0.0.1:5173 — `POST /api/chat` gọi `run_agent` (multi-search), FE nhận **câu trả lời cuối**; cite chip `[n]` → nguồn/PDF. Chi tiết: [web/README.md](web/README.md).
+
+Starter gốc vẫn là khung; phần trên là đường chạy solution đã nối Day 6.
 
 ## 1. Kết nối agent
 

@@ -28,6 +28,15 @@ Index một tài liệu thực tế từ **100 trang** có bảng, ảnh và bi�
 3. Dùng hoặc thay thế [starter](starter/README.md); bạn cần kết nối model và vector store thật.
 4. Chạy `python -m unittest discover -s tests -v`. Test mock chỉ kiểm tra code, không phải benchmark agent thật.
 
+## Solution (2A202603759)
+
+- Dữ liệu Day 6 strategy **C** (242 chunks + Chroma) → `starter/export_day6.py` / `build_benchmark.py` → `starter/data/converted/`.
+- 3 retrieval: TF-IDF, dense Chroma, hybrid RRF; cải thiện: `hybrid_filter`, `hybrid_wide` (đã chọn).
+- Agent: `llm_controller.py` (tool-calling, đã chạy benchmark LLM thật) + fallback `extractive_controller.py`; chạy qua `run_agent_bench.py`.
+- Báo cáo: [report/individual/2A202603759_TranCanhHung.md](report/individual/2A202603759_TranCanhHung.md).
+- Lệnh chi tiết: [starter/README.md](starter/README.md) §0. Copy `.env.example` → `starter/.env` (không commit key).
+- Web demo (run_agent + IEEE): [starter/web/README.md](starter/web/README.md) — API `starter/app.py`, FE Vite `:5173`.
+
 ![Các bước thử nghiệm trên dev và đánh giá trên test](assets/experiment-loop.svg)
 
 Nộp code, cách chạy, cấu hình, benchmark, trace và [báo cáo](report/individual/MSSV_HoTen.md). Thời gian ở [checkpoints](CHECKPOINTS.md) là gợi ý, có thể điều chỉnh theo lớp và phạm vi thử nghiệm.

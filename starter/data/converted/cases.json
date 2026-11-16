@@ -1,0 +1,209 @@
+[
+  {
+    "id": "q01",
+    "split": "dev",
+    "question": "What is a database according to section 5.1.1?",
+    "answerable": true,
+    "expected_behavior": "search_and_answer"
+  },
+  {
+    "id": "q02",
+    "split": "dev",
+    "question": "When is a database said to be consistent?",
+    "answerable": true,
+    "expected_behavior": "search_and_answer"
+  },
+  {
+    "id": "q03",
+    "split": "dev",
+    "question": "What are the ACID properties of a transaction?",
+    "answerable": true,
+    "expected_behavior": "search_and_answer"
+  },
+  {
+    "id": "q04",
+    "split": "dev",
+    "question": "How does Jim Gray redefine what a transaction is?",
+    "answerable": true,
+    "expected_behavior": "search_and_answer"
+  },
+  {
+    "id": "q05",
+    "split": "dev",
+    "question": "What is a schedule in multitransaction processing?",
+    "answerable": true,
+    "expected_behavior": "search_and_answer"
+  },
+  {
+    "id": "q06",
+    "split": "dev",
+    "question": "What is a serial schedule?",
+    "answerable": true,
+    "expected_behavior": "search_and_answer"
+  },
+  {
+    "id": "q07",
+    "split": "dev",
+    "question": "When does a conflict occur between two transactions?",
+    "answerable": true,
+    "expected_behavior": "search_and_answer"
+  },
+  {
+    "id": "q08",
+    "split": "dev",
+    "question": "What anomaly can arise from schedule S1 where T1 reads X and later T2 writes X before T1 reads again?",
+    "answerable": true,
+    "expected_behavior": "search_and_answer"
+  },
+  {
+    "id": "q09",
+    "split": "dev",
+    "question": "What is a blind write?",
+    "answerable": true,
+    "expected_behavior": "search_and_answer"
+  },
+  {
+    "id": "q10",
+    "split": "dev",
+    "question": "When are two schedules said to be equivalent?",
+    "answerable": true,
+    "expected_behavior": "search_and_answer"
+  },
+  {
+    "id": "q11",
+    "split": "dev",
+    "question": "What does it mean for a schedule to be serializable?",
+    "answerable": true,
+    "expected_behavior": "search_and_answer"
+  },
+  {
+    "id": "q12",
+    "split": "dev",
+    "question": "Using the total commitment order graph, when is a schedule serializable?",
+    "answerable": true,
+    "expected_behavior": "search_and_answer"
+  },
+  {
+    "id": "q13",
+    "split": "dev",
+    "question": "In a replicated database, when is schedule S globally serializable?",
+    "answerable": true,
+    "expected_behavior": "search_and_answer"
+  },
+  {
+    "id": "q14",
+    "split": "dev",
+    "question": "Is every view serializable schedule also conflict serializable?",
+    "answerable": true,
+    "expected_behavior": "search_and_answer"
+  },
+  {
+    "id": "q15",
+    "split": "dev",
+    "question": "What is a saga according to Garcia-Molina?",
+    "answerable": true,
+    "expected_behavior": "search_and_answer"
+  },
+  {
+    "id": "q16",
+    "split": "dev",
+    "question": "What are the two basic approaches to enforcing isolation in a centralized system?",
+    "answerable": true,
+    "expected_behavior": "search_and_answer"
+  },
+  {
+    "id": "q17",
+    "split": "dev",
+    "question": "Why does one-phase locking fail to always enforce serializability?",
+    "answerable": true,
+    "expected_behavior": "search_and_answer"
+  },
+  {
+    "id": "q18",
+    "split": "dev",
+    "question": "What are the two phases of two-phase locking?",
+    "answerable": true,
+    "expected_behavior": "search_and_answer"
+  },
+  {
+    "id": "q19",
+    "split": "dev",
+    "question": "Does 2PL prevent deadlocks?",
+    "answerable": true,
+    "expected_behavior": "search_and_answer"
+  },
+  {
+    "id": "q20",
+    "split": "dev",
+    "question": "According to TABLE 5.1, which ANSI isolation level disallows dirty reads, unrepeatable reads, and phantoms?",
+    "answerable": true,
+    "expected_behavior": "search_and_answer"
+  },
+  {
+    "id": "q21",
+    "split": "test",
+    "question": "When do phantoms occur with row locking?",
+    "answerable": true,
+    "expected_behavior": "search_and_answer"
+  },
+  {
+    "id": "q22",
+    "split": "test",
+    "question": "What is the main philosophy behind timestamp ordering concurrency control?",
+    "answerable": true,
+    "expected_behavior": "search_and_answer"
+  },
+  {
+    "id": "q23",
+    "split": "test",
+    "question": "What three phases make up a transaction's life cycle in optimistic concurrency control?",
+    "answerable": true,
+    "expected_behavior": "search_and_answer"
+  },
+  {
+    "id": "q24",
+    "split": "test",
+    "question": "In Oracle, what lock modes are generally employed?",
+    "answerable": true,
+    "expected_behavior": "search_and_answer"
+  },
+  {
+    "id": "q25",
+    "split": "test",
+    "question": "What is centralized 2PL in a distributed system?",
+    "answerable": true,
+    "expected_behavior": "search_and_answer"
+  },
+  {
+    "id": "abs01",
+    "split": "dev",
+    "question": "How does MongoDB choose a shard key for automatic sharding in a replica set?",
+    "answerable": false,
+    "expected_behavior": "search_and_abstain",
+    "absence_reason": "Corpus is Wiley DDBMS Ch.5 concurrency; no MongoDB sharding content."
+  },
+  {
+    "id": "abs02",
+    "split": "dev",
+    "question": "What is the default deadlock detection interval in milliseconds for PostgreSQL 16?",
+    "answerable": false,
+    "expected_behavior": "search_and_abstain",
+    "absence_reason": "Chapter discusses locking concepts but not PostgreSQL 16 timer defaults."
+  },
+  {
+    "id": "abs03",
+    "split": "test",
+    "question": "How many nodes does a Raft consensus cluster need for majority quorum of 5 voters?",
+    "answerable": false,
+    "expected_behavior": "search_and_abstain",
+    "absence_reason": "Raft consensus is outside the indexed chapter scope."
+  },
+  {
+    "id": "abs04",
+    "split": "test",
+    "question": "What is VinUni AI20k lab attendance policy for late submissions?",
+    "answerable": false,
+    "expected_behavior": "search_and_abstain",
+    "absence_reason": "Organizational policy is not present in the textbook corpus."
+  }
+]

@@ -1,0 +1,1527 @@
+[
+  {
+    "query_id": "q21",
+    "split": "test",
+    "question": "When do phantoms occur with row locking?",
+    "answerable": true,
+    "status": "answered",
+    "answer": "Phantoms occur with row locking when one transaction runs a SELECT, UPDATE, or DELETE using a predicate, and another transaction inserts or updates a row that satisfies that predicate. Row locks on the existing rows do not prevent the new matching row from being created, so a later query may return a different result. [C_wiley_ddbms_ch5_00090]",
+    "citations": [
+      "C_wiley_ddbms_ch5_00090"
+    ],
+    "events": [
+      {
+        "event": "search",
+        "query": "phantom rows occur with row locking predicate range query concurrent insert transaction row-level locks",
+        "filter": null,
+        "results": [
+          {
+            "id": "C_wiley_ddbms_ch5_00090",
+            "text": "207 CENTRALIZED DBE CONCURRENCY CONTROL\n\ninserting a new row into the table. This new row for Saeed’s new account is exclusively locked by T2 until it commits. At this time, T2 releases the lock, and when T1 audits the table again, it gets a different value ($100 more than before) for Saeed’s accounts. This phenomenon is known as the phantom issue in relational databases. Phantoms occur when row locking is used and one transaction issues a SELECT, UPDATE, or DELETE using a predicate P, and another transaction creates a row (using INSERT or UPDATE) that satisfies P. In other words, the DBMS does not prevent creation of new rows satisfying the predicate of rows locked by another transaction. The phantom issue may or may not be an issue for a given application. In general, the impact of conflict in relational systems is dictated by the level of exposure of items between two transactions.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 25,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.1.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03200204813108039
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00089",
+            "text": "t get an SIX lock on table R, and then, occasionally, get an X lock for the rows it wants to change. If T3 wants to use an index to read only part of R, then T3 gets an IS lock on R, and repeatedly gets an S lock on each row it needs to access.\n\nThe term “phantom” refers to an issue that is specific to the way relational DBMSs use row-level locking. Phantoms occur when one transac- tion’s updates or inserts change the scope of rows that another transaction has locked. Figure 5.14 illustrates how the phantom issue occurs between two transactions working on the rows of the same table. In this example, transaction T1 locks and reads the total of Saeed’s account balances first. The first select statement in T1 finishes before the insert statement of T2 starts. Although T1 has a shared lock on the rows of the table, it does not prevent T2 from",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 24,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.1.3",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.031544957774465976
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00094",
+            "text": "be granted to T2 since it is not compatible with the S lock that T1 is holding on this index block. Therefore, T2 cannot insert the new row until after T1 finishes, which prevents the phantom issue. If there were no such index on the column that the predicate is based on, transaction T1 would need to lock all the employee table pages to prevent phantoms. In predicate locking the DBMS deals with the phantom issue by not only locking all the rows that satisfy the predicate of the SQL statements, but also by denying any insertions of new rows and/or updates of existing rows that would change the scope of a conflicting transaction. Index page locking is a special case of predicate locking for which an index provides an efficient implementation of the predicate lock. Because of the overhead associated with the implementation of predicate locking, many DBMSs (such as Microsoft SQL Server and Sybase) use index page locking to deal with the phantom issue.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 26,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.1.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.0315136476426799
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00091",
+            "text": "nflict in relational systems is dictated by the level of exposure of items between two transactions. ANSI (the American National Standards Institute) suggests four isolation levels for its SQL92 standard and indicates the ramification of each level of exposure as shown in the Table 5.1. DBMSs can employ different approaches to overcome the phantom issue. The two most commonly used approaches are index page locking and predicate locking. As an example of index page locking, assume transaction T1 is printing the name of all employees whose salaries (hopefully, weekly salaries) are in the range “$5K< salary <= $10K.” Suppose there are three employees who satisfy this condition. These employees make $6K, $9K, and $10K. Then, during the execution of T1, transaction T2 inserts a new employee with the salary of $7K. Obviously, the new row that transaction T2 is inserting satisfies the predicate for the select issued by T1. Therefore, it is a phantom row.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 25,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.1.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03125763125763126
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00125",
+            "text": "217 CENTRALIZED DBE CONCURRENCY CONTROL\n\n2. Exclusive Row-Level Lock. This type of lock is acquired by transactions that execute the INSERT, DELETE, UPDATE, and SELECT . . . FOR UPDATE state- ments. To obtain a row-level lock, a transaction also acquires a table lock for the corresponding table to prevent conflicting DDL operations.\n\nThere are five types of table locks in Oracle. These are row Share Table-Level Locks (RS), row exclusive (RX), share (S), share row exclusive (SRX), and exclusive (X) table locks as explained below: • Row Share (RS) Table Lock. This indicates that a transaction is holding shared row locks on rows of the table and intends to update them. A row share table lock is automatically acquired for a table when one of the following SQL statements is executed:",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 35,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.4.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.030776515151515152
+          }
+        ],
+        "context": "[C_wiley_ddbms_ch5_00090 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 25]\n207 CENTRALIZED DBE CONCURRENCY CONTROL\n\ninserting a new row into the table. This new row for Saeed’s new account is exclusively locked by T2 until it commits. At this time, T2 releases the lock, and when T1 audits the table again, it gets a different value ($100 more than before) for Saeed’s accounts. This phenomenon is known as the phantom issue in relational databases. Phantoms occur when row locking is used and one transaction issues a SELECT, UPDATE, or DELETE using a predicate P, and another transaction creates a row (using INSERT or UPDATE) that satisfies P. In other words, the DBMS does not prevent creation of new rows satisfying the predicate of rows locked by another transaction. The phantom issue may or may not be an issue for a given application. In general, the impact of conflict in relational systems is dictated by the level of exposure of items between two transactions.",
+        "context_ids": [
+          "C_wiley_ddbms_ch5_00090"
+        ]
+      },
+      {
+        "event": "answer"
+      }
+    ],
+    "elapsed_ms": 5043.368699960411,
+    "retriever": "hybrid_wide",
+    "controller": "llm",
+    "model": "gpt-6-luna"
+  },
+  {
+    "query_id": "q22",
+    "split": "test",
+    "question": "What is the main philosophy behind timestamp ordering concurrency control?",
+    "answerable": true,
+    "status": "answered",
+    "answer": "Timestamp ordering’s main philosophy is to use each transaction’s timestamp (its “birthdate”) to coordinate concurrent access so that the resulting schedule is conflict serializable—rather than isolating data items with locks. [C_wiley_ddbms_ch5_00096]",
+    "citations": [
+      "C_wiley_ddbms_ch5_00096"
+    ],
+    "events": [
+      {
+        "event": "search",
+        "query": "timestamp ordering concurrency control main philosophy transactions ordered by timestamps serializability read write timestamp rules",
+        "filter": null,
+        "results": [
+          {
+            "id": "C_wiley_ddbms_ch5_00096",
+            "text": "As discussed in Section 5.3.1, locking-based concurrency control algorithms use locks to isolate the data items that one transaction is working with from other transactions—the other transactions are denied access to those locked data items. A transaction’s timestamp (age) can also be used to coordinate concurrent access to the database’s data items in such a way that the schedule is conflict serializable. This approach is known as timestamp ordering (TO) [Bernstein80b]. In TO concurrency control, each transaction is given a timestamp when it enters the system. The timestamp is set to the computer’s clock reading at the time that the transaction enters the system. Since a single processor can only handle one transaction entry at a time, timestamps generated by the system are unique for a single computer. Handling only one transaction at a time is a necessary requirement since each transaction must be given a unique timestamp. The timestamp acts as the “birthdate” of the transaction.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 27,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.2",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03252247488101534
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00164",
+            "text": "The basic concept of timestamp concurrency control algorithms in centralized systems can easily be extended to a distributed database. Since both the basic and conserva- tive TO algorithms (discussed earlier in this chapter) rely on timestamps for resolving conflicts, it is important that timestamps be a good representative of the relative age of each transaction. In a centralized system, the physical clock reading is used as the timestamp. The physical clock obviously produces a true indication of each trans- action’s age—the smaller the timestamp the older the transaction is. As mentioned earlier, we do not actually have to use the physical clock reading of the local system as the timestamp. We can use a logical clock (LC) that is incremented for each event in the system as the transaction timestamp, since it provides for the same relative ordering for a transaction’s age.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 50,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.4.2",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03125
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00099",
+            "text": "but it does mean that those that do commit must be committed in the proper order (using their ages). In other words, TO concurrency control algorithms generate schedules that are serializable and the transactions in the equivalent serial schedule are arranged in order, from oldest to youngest based on each transaction’s age. There are three rules that enforce serializability based on the age of a transaction. In what follows we outline these rules for two conflicting transactions. It should be noted that in a concurrent transaction processing system, there are many transactions running at the same time. For these systems, the serializability rules are applied to each pair of conflicting transactions. These three rules are: • Access Rule. When two transactions try to access data item X at the same time, with conflicting operations, priority is given to the older transaction. This priority forces the younger transaction to wait for an older transaction to commit first.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 27,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.2",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.031024531024531024
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00098",
+            "text": "ubscripts, instead of an actual physical clock reading for timestamps, will simplify our discussion. The main philosophy behind the TO approach is to coordinate the access to a data item based on the age of the transactions involved. TO concurrency control based algorithms force transactions to commit in the order dictated by their ages. It is expected that an older transaction must commit before a younger transaction, since the older transaction enters the system before the younger one does. For example, if transactions T1, T2, . . . , T10 are all running in the system, then TO concurrency control expects that T1 must commit before T2, T2 must commits before T3, and so on. This does not mean that all 10 transactions will commit, but it does mean that those that do commit must be committed in the proper order (using their ages).",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 27,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.2",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.028790389395194696
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00114",
+            "text": "To ensure serializability, this approach, like other concurrency control algorithms, must check for read–write, write–read, and write–write conflicts between transactions. To explain how this approach achieves serializability, let rs(Tj) be the set of data items that transaction Tj reads (the read-set) while ws(Tj) represents the set of data items that Tj writes (the write set). During the execution phase, transaction only reads data items from the database and does not write anything to the database. During the validation phase, serializability is checked and transaction does not read from or write to the database. During the commit phase, transaction only writes to the database. There are three rules that this algorithm uses to enforce serializability during vali- dation: • Rule 1. For two transactions Ti and Tj, where Ti is reading what Tj is writing, Ti’s EP phase cannot overlap with Tj’s CP phase. Tj has to start its CP after Ti has finished its EP. • Rule 2.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 32,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.3",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.028381642512077296
+          }
+        ],
+        "context": "[C_wiley_ddbms_ch5_00096 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 27]\nAs discussed in Section 5.3.1, locking-based concurrency control algorithms use locks to isolate the data items that one transaction is working with from other transactions—the other transactions are denied access to those locked data items. A transaction’s timestamp (age) can also be used to coordinate concurrent access to the database’s data items in such a way that the schedule is conflict serializable. This approach is known as timestamp ordering (TO) [Bernstein80b]. In TO concurrency control, each transaction is given a timestamp when it enters the system. The timestamp is set to the computer’s clock reading at the time that the transaction enters the system. Since a single processor can only handle one transaction entry at a time, timestamps generated by the system are unique for a single computer. Handling only one transaction at a time is a necessary requirement since each transaction must be given a unique timestamp. The timestamp acts as the “birthdate” of the transaction.",
+        "context_ids": [
+          "C_wiley_ddbms_ch5_00096"
+        ]
+      },
+      {
+        "event": "answer"
+      }
+    ],
+    "elapsed_ms": 6257.071100000758,
+    "retriever": "hybrid_wide",
+    "controller": "llm",
+    "model": "gpt-6-luna"
+  },
+  {
+    "query_id": "q23",
+    "split": "test",
+    "question": "What three phases make up a transaction's life cycle in optimistic concurrency control?",
+    "answerable": true,
+    "status": "answered",
+    "answer": "The three phases are the **execution phase (EP)**, **validation phase (VP)**, and **commit phase (CP)**. [C_wiley_ddbms_ch5_00113]",
+    "citations": [
+      "C_wiley_ddbms_ch5_00113"
+    ],
+    "events": [
+      {
+        "event": "search",
+        "query": "optimistic concurrency control transaction life cycle three phases validation read phase write phase",
+        "filter": null,
+        "results": [
+          {
+            "id": "C_wiley_ddbms_ch5_00113",
+            "text": "oposal that is extended for distributed database, we will only discuss the timestamp-based approach. Interested readers are referred to [Kung81] for the details of the locking-based optimistic concurrency control algorithm. In optimistic concurrency control, a transaction’s life cycle is divided into three phases, execution phase (EP), validation phase (VP), and commit phase (CP) as outlined below: • Execution Phase (EP). In this phase, transaction performs its actions and buffers the new values for data items in memory. • Validation Phase (VP). In this phase, transaction validates itself to assure that committing its changes to the database does not destroy the consistency of the database (i.e., generates serializable schedule). • Commit Phase (CP). In this phase, transaction writes its changes from memory to the database on disk.\n\n214 CONTROLLING CONCURRENCY",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 31,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.3",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03278688524590164
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00114",
+            "text": "To ensure serializability, this approach, like other concurrency control algorithms, must check for read–write, write–read, and write–write conflicts between transactions. To explain how this approach achieves serializability, let rs(Tj) be the set of data items that transaction Tj reads (the read-set) while ws(Tj) represents the set of data items that Tj writes (the write set). During the execution phase, transaction only reads data items from the database and does not write anything to the database. During the validation phase, serializability is checked and transaction does not read from or write to the database. During the commit phase, transaction only writes to the database. There are three rules that this algorithm uses to enforce serializability during vali- dation: • Rule 1. For two transactions Ti and Tj, where Ti is reading what Tj is writing, Ti’s EP phase cannot overlap with Tj’s CP phase. Tj has to start its CP after Ti has finished its EP. • Rule 2.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 32,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.3",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.0315136476426799
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00227",
+            "text": "Figure 5.19. Optimistic concurrency control algorithm overlap cases.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 33,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "figure",
+              "section": "5.3.4",
+              "figure_id": "wiley_ddbms_ch5_figure_5_19_p33",
+              "table_id": ""
+            },
+            "score": 0.029910714285714284
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00180",
+            "text": "In Section 5.3.3, we discussed the optimistic concurrency control for a centralized system. This section discusses the extensions that need to be made to the centralized optimistic concurrency control in order to use it in a distributed system.\n\n237 CONCURRENCY CONTROL IN DISTRIBUTED DATABASE SYSTEMS\n\nTo extend the optimistic concurrency control algorithm to a distributed implemen- tation, two rules must be applied:",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 54,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.4.3",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.029631255487269532
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00210",
+            "text": "Figure 5.2. Transaction life cycle.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 7,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "figure",
+              "section": "5.1.2.1",
+              "figure_id": "wiley_ddbms_ch5_figure_5_2_p7",
+              "table_id": ""
+            },
+            "score": 0.016129032258064516
+          }
+        ],
+        "context": "[C_wiley_ddbms_ch5_00113 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 31]\noposal that is extended for distributed database, we will only discuss the timestamp-based approach. Interested readers are referred to [Kung81] for the details of the locking-based optimistic concurrency control algorithm. In optimistic concurrency control, a transaction’s life cycle is divided into three phases, execution phase (EP), validation phase (VP), and commit phase (CP) as outlined below: • Execution Phase (EP). In this phase, transaction performs its actions and buffers the new values for data items in memory. • Validation Phase (VP). In this phase, transaction validates itself to assure that committing its changes to the database does not destroy the consistency of the database (i.e., generates serializable schedule). • Commit Phase (CP). In this phase, transaction writes its changes from memory to the database on disk.\n\n214 CONTROLLING CONCURRENCY\n\n[C_wiley_ddbms_ch5_00227 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 33]\nFigure 5.19. Optimistic concurrency control algorithm overlap cases.\n\n[C_wiley_ddbms_ch5_00210 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 7]\nFigure 5.2. Transaction life cycle.",
+        "context_ids": [
+          "C_wiley_ddbms_ch5_00113",
+          "C_wiley_ddbms_ch5_00227",
+          "C_wiley_ddbms_ch5_00210"
+        ]
+      },
+      {
+        "event": "answer"
+      }
+    ],
+    "elapsed_ms": 3198.640599963255,
+    "retriever": "hybrid_wide",
+    "controller": "llm",
+    "model": "gpt-6-luna"
+  },
+  {
+    "query_id": "q24",
+    "split": "test",
+    "question": "In Oracle, what lock modes are generally employed?",
+    "answerable": true,
+    "status": "abstain",
+    "answer": "Không đủ bằng chứng để trả lời.",
+    "citations": [],
+    "events": [
+      {
+        "event": "search",
+        "query": "Oracle database lock modes generally employed lock modes row table shared exclusive modes",
+        "filter": null,
+        "results": [
+          {
+            "id": "C_wiley_ddbms_ch5_00130",
+            "text": "LOCK TABLE table_name IN SHARE MODE; LOCK TABLE table_name IN SHARE ROW EXCLUSIVE MODE; LOCK TABLE table_name IN ROW EXCLUSIVE MODE; LOCK TABLE table_name IN EXCLUSIVE MODE; • Exclusive (X) Table Lock. This is the most restrictive mode of table lock, allowing the transaction that holds the lock to have exclusive write access to the table. An exclusive table lock is acquired for a table as follows:\n\nLOCK TABLE table_name IN EXCLUSIVE MODE; Only one transaction can obtain an exclusive table lock for a table. An exclusive table lock permits other transactions only to query the table. An exclusive table lock held by a transaction prohibits other transactions from performing any type of DML statement against the table and also prevents them from placing any type of lock on the table. Figure 5.20 outlines the lock types that Oracle uses for different types of SQL statements.\n\n219\n\n220 CONTROLLING CONCURRENCY",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 36,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.4.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03252247488101534
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00131",
+            "text": "Oracle automatically converts a table lock of lower restric- Oracle Lock Escalation tiveness to one of higher restrictiveness as appropriate. As an example, assume a transaction issues a “SELECT . . . FOR UPDATE” statement. In this case, the trans- action acquires an exclusive row lock and a row share table lock on the table. If this transaction later updates one or more of the locked rows, the row share table lock is automatically converted to a row exclusive table lock by Oracle. As another example, if a transaction holds many row locks on a table, the database will automatically escalate the row locks to a single table lock for the transaction. Figure 5.21 summarizes the lock types and com- Oracle Lock Compatibility Matrix patibilities that are supported by Oracle 10 g. Example 5.6 The following cases illustrate some of the row- and table-level lock compatibilities as indicated in Figure 5.21.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 38,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.4.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.031746031746031744
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00125",
+            "text": "217 CENTRALIZED DBE CONCURRENCY CONTROL\n\n2. Exclusive Row-Level Lock. This type of lock is acquired by transactions that execute the INSERT, DELETE, UPDATE, and SELECT . . . FOR UPDATE state- ments. To obtain a row-level lock, a transaction also acquires a table lock for the corresponding table to prevent conflicting DDL operations.\n\nThere are five types of table locks in Oracle. These are row Share Table-Level Locks (RS), row exclusive (RX), share (S), share row exclusive (SRX), and exclusive (X) table locks as explained below: • Row Share (RS) Table Lock. This indicates that a transaction is holding shared row locks on rows of the table and intends to update them. A row share table lock is automatically acquired for a table when one of the following SQL statements is executed:",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 35,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.4.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03128054740957967
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00126",
+            "text": "SELECT ... FROM table_name ... FOR UPDATE OF ... ; LOCK TABLE table_name IN ROW SHARE MODE; A shared row lock allows for most concurrency in an Oracle system. Even when a table is locked in RS mode, other transactions are allowed to query, insert, update, delete, or lock rows concurrently in the table that has the RS lock on it. The only operation that is blocked by a RS lock is “LOCK TABLE table−name IN EXCLUSIVE MODE,” which gives the transaction executing the statement exclusive write access to the table named “table−name.” • Row Exclusive (RX) Table Lock. This indicates that the transaction holding the lock has made one or more updates to rows in the table. A row exclusive table lock is acquired automatically for a table modified by the following types of statements:",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 35,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.4.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03125
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00129",
+            "text": "LOCK TABLE table_name IN SHARE ROW EXCLUSIVE MODE; LOCK TABLE table_name IN EXCLUSIVE MODE; LOCK TABLE table_name IN ROW EXCLUSIVE MODE; • Share Row Exclusive (SRX) Table Lock. This is more restrictive than a share table lock. A share row exclusive table lock is acquired for a table when a transaction executes:\n\nLOCK TABLE table_name IN SHARE ROW EXCLUSIVE MODE; Only one transaction at a time can acquire a share row exclusive table lock on a given table. Other transactions can query or lock specific rows using “SELECT” with the “FOR UPDATE” clause but cannot update the table. A SRX lock on a table prevents other transactions from obtaining row exclusive table locks and modifying the same table. This type of lock prohibits execution of the following statements by other transactions:",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 36,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.4.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.030679156908665108
+          }
+        ],
+        "context": "[C_wiley_ddbms_ch5_00130 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 36]\nLOCK TABLE table_name IN SHARE MODE; LOCK TABLE table_name IN SHARE ROW EXCLUSIVE MODE; LOCK TABLE table_name IN ROW EXCLUSIVE MODE; LOCK TABLE table_name IN EXCLUSIVE MODE; • Exclusive (X) Table Lock. This is the most restrictive mode of table lock, allowing the transaction that holds the lock to have exclusive write access to the table. An exclusive table lock is acquired for a table as follows:\n\nLOCK TABLE table_name IN EXCLUSIVE MODE; Only one transaction can obtain an exclusive table lock for a table. An exclusive table lock permits other transactions only to query the table. An exclusive table lock held by a transaction prohibits other transactions from performing any type of DML statement against the table and also prevents them from placing any type of lock on the table. Figure 5.20 outlines the lock types that Oracle uses for different types of SQL statements.\n\n219\n\n220 CONTROLLING CONCURRENCY",
+        "context_ids": [
+          "C_wiley_ddbms_ch5_00130"
+        ]
+      },
+      {
+        "event": "search",
+        "query": "Oracle generally employed lock modes row locks table locks shared row exclusive exclusive modes lock types SQL statements",
+        "filter": null,
+        "results": [
+          {
+            "id": "C_wiley_ddbms_ch5_00125",
+            "text": "217 CENTRALIZED DBE CONCURRENCY CONTROL\n\n2. Exclusive Row-Level Lock. This type of lock is acquired by transactions that execute the INSERT, DELETE, UPDATE, and SELECT . . . FOR UPDATE state- ments. To obtain a row-level lock, a transaction also acquires a table lock for the corresponding table to prevent conflicting DDL operations.\n\nThere are five types of table locks in Oracle. These are row Share Table-Level Locks (RS), row exclusive (RX), share (S), share row exclusive (SRX), and exclusive (X) table locks as explained below: • Row Share (RS) Table Lock. This indicates that a transaction is holding shared row locks on rows of the table and intends to update them. A row share table lock is automatically acquired for a table when one of the following SQL statements is executed:",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 35,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.4.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03252247488101534
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00130",
+            "text": "LOCK TABLE table_name IN SHARE MODE; LOCK TABLE table_name IN SHARE ROW EXCLUSIVE MODE; LOCK TABLE table_name IN ROW EXCLUSIVE MODE; LOCK TABLE table_name IN EXCLUSIVE MODE; • Exclusive (X) Table Lock. This is the most restrictive mode of table lock, allowing the transaction that holds the lock to have exclusive write access to the table. An exclusive table lock is acquired for a table as follows:\n\nLOCK TABLE table_name IN EXCLUSIVE MODE; Only one transaction can obtain an exclusive table lock for a table. An exclusive table lock permits other transactions only to query the table. An exclusive table lock held by a transaction prohibits other transactions from performing any type of DML statement against the table and also prevents them from placing any type of lock on the table. Figure 5.20 outlines the lock types that Oracle uses for different types of SQL statements.\n\n219\n\n220 CONTROLLING CONCURRENCY",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 36,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.4.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.032018442622950824
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00131",
+            "text": "Oracle automatically converts a table lock of lower restric- Oracle Lock Escalation tiveness to one of higher restrictiveness as appropriate. As an example, assume a transaction issues a “SELECT . . . FOR UPDATE” statement. In this case, the trans- action acquires an exclusive row lock and a row share table lock on the table. If this transaction later updates one or more of the locked rows, the row share table lock is automatically converted to a row exclusive table lock by Oracle. As another example, if a transaction holds many row locks on a table, the database will automatically escalate the row locks to a single table lock for the transaction. Figure 5.21 summarizes the lock types and com- Oracle Lock Compatibility Matrix patibilities that are supported by Oracle 10 g. Example 5.6 The following cases illustrate some of the row- and table-level lock compatibilities as indicated in Figure 5.21.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 38,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.4.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03125763125763126
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00129",
+            "text": "LOCK TABLE table_name IN SHARE ROW EXCLUSIVE MODE; LOCK TABLE table_name IN EXCLUSIVE MODE; LOCK TABLE table_name IN ROW EXCLUSIVE MODE; • Share Row Exclusive (SRX) Table Lock. This is more restrictive than a share table lock. A share row exclusive table lock is acquired for a table when a transaction executes:\n\nLOCK TABLE table_name IN SHARE ROW EXCLUSIVE MODE; Only one transaction at a time can acquire a share row exclusive table lock on a given table. Other transactions can query or lock specific rows using “SELECT” with the “FOR UPDATE” clause but cannot update the table. A SRX lock on a table prevents other transactions from obtaining row exclusive table locks and modifying the same table. This type of lock prohibits execution of the following statements by other transactions:",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 36,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.4.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.030834914611005692
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00126",
+            "text": "SELECT ... FROM table_name ... FOR UPDATE OF ... ; LOCK TABLE table_name IN ROW SHARE MODE; A shared row lock allows for most concurrency in an Oracle system. Even when a table is locked in RS mode, other transactions are allowed to query, insert, update, delete, or lock rows concurrently in the table that has the RS lock on it. The only operation that is blocked by a RS lock is “LOCK TABLE table−name IN EXCLUSIVE MODE,” which gives the transaction executing the statement exclusive write access to the table named “table−name.” • Row Exclusive (RX) Table Lock. This indicates that the transaction holding the lock has made one or more updates to rows in the table. A row exclusive table lock is acquired automatically for a table modified by the following types of statements:",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 35,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.4.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03055037313432836
+          }
+        ],
+        "context": "[C_wiley_ddbms_ch5_00130 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 36]\nLOCK TABLE table_name IN SHARE MODE; LOCK TABLE table_name IN SHARE ROW EXCLUSIVE MODE; LOCK TABLE table_name IN ROW EXCLUSIVE MODE; LOCK TABLE table_name IN EXCLUSIVE MODE; • Exclusive (X) Table Lock. This is the most restrictive mode of table lock, allowing the transaction that holds the lock to have exclusive write access to the table. An exclusive table lock is acquired for a table as follows:\n\nLOCK TABLE table_name IN EXCLUSIVE MODE; Only one transaction can obtain an exclusive table lock for a table. An exclusive table lock permits other transactions only to query the table. An exclusive table lock held by a transaction prohibits other transactions from performing any type of DML statement against the table and also prevents them from placing any type of lock on the table. Figure 5.20 outlines the lock types that Oracle uses for different types of SQL statements.\n\n219\n\n220 CONTROLLING CONCURRENCY",
+        "context_ids": [
+          "C_wiley_ddbms_ch5_00130"
+        ]
+      },
+      {
+        "event": "search",
+        "query": "Oracle lock modes generally employed table locks row locks modes share row share row exclusive share row exclusive exclusive; Oracle lock modes list",
+        "filter": null,
+        "results": [
+          {
+            "id": "C_wiley_ddbms_ch5_00125",
+            "text": "217 CENTRALIZED DBE CONCURRENCY CONTROL\n\n2. Exclusive Row-Level Lock. This type of lock is acquired by transactions that execute the INSERT, DELETE, UPDATE, and SELECT . . . FOR UPDATE state- ments. To obtain a row-level lock, a transaction also acquires a table lock for the corresponding table to prevent conflicting DDL operations.\n\nThere are five types of table locks in Oracle. These are row Share Table-Level Locks (RS), row exclusive (RX), share (S), share row exclusive (SRX), and exclusive (X) table locks as explained below: • Row Share (RS) Table Lock. This indicates that a transaction is holding shared row locks on rows of the table and intends to update them. A row share table lock is automatically acquired for a table when one of the following SQL statements is executed:",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 35,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.4.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03225806451612903
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00130",
+            "text": "LOCK TABLE table_name IN SHARE MODE; LOCK TABLE table_name IN SHARE ROW EXCLUSIVE MODE; LOCK TABLE table_name IN ROW EXCLUSIVE MODE; LOCK TABLE table_name IN EXCLUSIVE MODE; • Exclusive (X) Table Lock. This is the most restrictive mode of table lock, allowing the transaction that holds the lock to have exclusive write access to the table. An exclusive table lock is acquired for a table as follows:\n\nLOCK TABLE table_name IN EXCLUSIVE MODE; Only one transaction can obtain an exclusive table lock for a table. An exclusive table lock permits other transactions only to query the table. An exclusive table lock held by a transaction prohibits other transactions from performing any type of DML statement against the table and also prevents them from placing any type of lock on the table. Figure 5.20 outlines the lock types that Oracle uses for different types of SQL statements.\n\n219\n\n220 CONTROLLING CONCURRENCY",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 36,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.4.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.031544957774465976
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00131",
+            "text": "Oracle automatically converts a table lock of lower restric- Oracle Lock Escalation tiveness to one of higher restrictiveness as appropriate. As an example, assume a transaction issues a “SELECT . . . FOR UPDATE” statement. In this case, the trans- action acquires an exclusive row lock and a row share table lock on the table. If this transaction later updates one or more of the locked rows, the row share table lock is automatically converted to a row exclusive table lock by Oracle. As another example, if a transaction holds many row locks on a table, the database will automatically escalate the row locks to a single table lock for the transaction. Figure 5.21 summarizes the lock types and com- Oracle Lock Compatibility Matrix patibilities that are supported by Oracle 10 g. Example 5.6 The following cases illustrate some of the row- and table-level lock compatibilities as indicated in Figure 5.21.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 38,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.4.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03149801587301587
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00129",
+            "text": "LOCK TABLE table_name IN SHARE ROW EXCLUSIVE MODE; LOCK TABLE table_name IN EXCLUSIVE MODE; LOCK TABLE table_name IN ROW EXCLUSIVE MODE; • Share Row Exclusive (SRX) Table Lock. This is more restrictive than a share table lock. A share row exclusive table lock is acquired for a table when a transaction executes:\n\nLOCK TABLE table_name IN SHARE ROW EXCLUSIVE MODE; Only one transaction at a time can acquire a share row exclusive table lock on a given table. Other transactions can query or lock specific rows using “SELECT” with the “FOR UPDATE” clause but cannot update the table. A SRX lock on a table prevents other transactions from obtaining row exclusive table locks and modifying the same table. This type of lock prohibits execution of the following statements by other transactions:",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 36,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.4.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03125763125763126
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00134",
+            "text": "row exclusive, and share table locks, but it is not compatible with an exclusive table lock. Case 4. The example in Figure 5.25 shows that a row exclusive table lock is compatible with another row exclusive or row share table lock, but it is not compatible with share, share row exclusive, or exclusive table locks.\n\n222 CONTROLLING CONCURRENCY\n\nCase 5. As depicted in Figure 5.26, this experiment uses share table lock mode and creates a deadlock between T1 and T2. Both transactions lock the table in shared mode. Then, they both try to update the same row. This causes a deadlock since both transactions wait for the lock on the row to be released by the other. Case 6. This example uses a share row table lock. This scenario (Figure 5.27) is the same as above except that transaction T2 locks the table in shared row mode. This experiment also shows that share table lock and row share table locks are compatible.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 39,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.4.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.030679156908665108
+          }
+        ],
+        "context": "[C_wiley_ddbms_ch5_00130 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 36]\nLOCK TABLE table_name IN SHARE MODE; LOCK TABLE table_name IN SHARE ROW EXCLUSIVE MODE; LOCK TABLE table_name IN ROW EXCLUSIVE MODE; LOCK TABLE table_name IN EXCLUSIVE MODE; • Exclusive (X) Table Lock. This is the most restrictive mode of table lock, allowing the transaction that holds the lock to have exclusive write access to the table. An exclusive table lock is acquired for a table as follows:\n\nLOCK TABLE table_name IN EXCLUSIVE MODE; Only one transaction can obtain an exclusive table lock for a table. An exclusive table lock permits other transactions only to query the table. An exclusive table lock held by a transaction prohibits other transactions from performing any type of DML statement against the table and also prevents them from placing any type of lock on the table. Figure 5.20 outlines the lock types that Oracle uses for different types of SQL statements.\n\n219\n\n220 CONTROLLING CONCURRENCY",
+        "context_ids": [
+          "C_wiley_ddbms_ch5_00130"
+        ]
+      },
+      {
+        "event": "search",
+        "query": "Oracle lock modes generally employed row locks table locks shared exclusive modes Oracle lock types SQL statements",
+        "filter": null,
+        "results": [
+          {
+            "id": "C_wiley_ddbms_ch5_00125",
+            "text": "217 CENTRALIZED DBE CONCURRENCY CONTROL\n\n2. Exclusive Row-Level Lock. This type of lock is acquired by transactions that execute the INSERT, DELETE, UPDATE, and SELECT . . . FOR UPDATE state- ments. To obtain a row-level lock, a transaction also acquires a table lock for the corresponding table to prevent conflicting DDL operations.\n\nThere are five types of table locks in Oracle. These are row Share Table-Level Locks (RS), row exclusive (RX), share (S), share row exclusive (SRX), and exclusive (X) table locks as explained below: • Row Share (RS) Table Lock. This indicates that a transaction is holding shared row locks on rows of the table and intends to update them. A row share table lock is automatically acquired for a table when one of the following SQL statements is executed:",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 35,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.4.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03252247488101534
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00130",
+            "text": "LOCK TABLE table_name IN SHARE MODE; LOCK TABLE table_name IN SHARE ROW EXCLUSIVE MODE; LOCK TABLE table_name IN ROW EXCLUSIVE MODE; LOCK TABLE table_name IN EXCLUSIVE MODE; • Exclusive (X) Table Lock. This is the most restrictive mode of table lock, allowing the transaction that holds the lock to have exclusive write access to the table. An exclusive table lock is acquired for a table as follows:\n\nLOCK TABLE table_name IN EXCLUSIVE MODE; Only one transaction can obtain an exclusive table lock for a table. An exclusive table lock permits other transactions only to query the table. An exclusive table lock held by a transaction prohibits other transactions from performing any type of DML statement against the table and also prevents them from placing any type of lock on the table. Figure 5.20 outlines the lock types that Oracle uses for different types of SQL statements.\n\n219\n\n220 CONTROLLING CONCURRENCY",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 36,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.4.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.032018442622950824
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00131",
+            "text": "Oracle automatically converts a table lock of lower restric- Oracle Lock Escalation tiveness to one of higher restrictiveness as appropriate. As an example, assume a transaction issues a “SELECT . . . FOR UPDATE” statement. In this case, the trans- action acquires an exclusive row lock and a row share table lock on the table. If this transaction later updates one or more of the locked rows, the row share table lock is automatically converted to a row exclusive table lock by Oracle. As another example, if a transaction holds many row locks on a table, the database will automatically escalate the row locks to a single table lock for the transaction. Figure 5.21 summarizes the lock types and com- Oracle Lock Compatibility Matrix patibilities that are supported by Oracle 10 g. Example 5.6 The following cases illustrate some of the row- and table-level lock compatibilities as indicated in Figure 5.21.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 38,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.4.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.031746031746031744
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00122",
+            "text": "ose locks obtained before the savepoint. In general, Oracle employs exclusive and shared lock modes. Locks with exclusive lock mode (ELM) are obtained to modify data. The first transaction to lock a resource exclusively is the only transaction that can alter that resource, until the exclusive lock is released. Locks with share lock mode (SLM) are used to allow several transactions to acquire share locks on the same resource, at the same time, so they can read the resource. Holding share locks on a resource prevents concurrent access by transactions trying to modify the resource. From a different viewpoint, Oracle supports three types of locks: DML locks, DDL locks, and system locks. The following summarizes these three lock types: • A DML lock (data lock) is used by any SQL statement that modifies data—such as INSERT, DELETE, UPDATE, and SELECT . . . FOR UPDATE. These statements can acquire row-level locks or table-level locks.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 34,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03128054740957967
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00126",
+            "text": "SELECT ... FROM table_name ... FOR UPDATE OF ... ; LOCK TABLE table_name IN ROW SHARE MODE; A shared row lock allows for most concurrency in an Oracle system. Even when a table is locked in RS mode, other transactions are allowed to query, insert, update, delete, or lock rows concurrently in the table that has the RS lock on it. The only operation that is blocked by a RS lock is “LOCK TABLE table−name IN EXCLUSIVE MODE,” which gives the transaction executing the statement exclusive write access to the table named “table−name.” • Row Exclusive (RX) Table Lock. This indicates that the transaction holding the lock has made one or more updates to rows in the table. A row exclusive table lock is acquired automatically for a table modified by the following types of statements:",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 35,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.4.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03076923076923077
+          }
+        ],
+        "context": "[C_wiley_ddbms_ch5_00130 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 36]\nLOCK TABLE table_name IN SHARE MODE; LOCK TABLE table_name IN SHARE ROW EXCLUSIVE MODE; LOCK TABLE table_name IN ROW EXCLUSIVE MODE; LOCK TABLE table_name IN EXCLUSIVE MODE; • Exclusive (X) Table Lock. This is the most restrictive mode of table lock, allowing the transaction that holds the lock to have exclusive write access to the table. An exclusive table lock is acquired for a table as follows:\n\nLOCK TABLE table_name IN EXCLUSIVE MODE; Only one transaction can obtain an exclusive table lock for a table. An exclusive table lock permits other transactions only to query the table. An exclusive table lock held by a transaction prohibits other transactions from performing any type of DML statement against the table and also prevents them from placing any type of lock on the table. Figure 5.20 outlines the lock types that Oracle uses for different types of SQL statements.\n\n219\n\n220 CONTROLLING CONCURRENCY",
+        "context_ids": [
+          "C_wiley_ddbms_ch5_00130"
+        ]
+      },
+      {
+        "event": "search_limit"
+      }
+    ],
+    "elapsed_ms": 10791.948899975978,
+    "retriever": "hybrid_wide",
+    "controller": "llm",
+    "model": "gpt-6-luna"
+  },
+  {
+    "query_id": "q25",
+    "split": "test",
+    "question": "What is centralized 2PL in a distributed system?",
+    "answerable": true,
+    "status": "answered",
+    "answer": "Centralized 2PL is a distributed-system implementation of two-phase locking in which one central lock manager receives and controls lock requests from all sites. Because it sees all requests, it can detect conflicts across sites and enforce 2PL, helping prevent inconsistent database states. [C_wiley_ddbms_ch5_00151]",
+    "citations": [
+      "C_wiley_ddbms_ch5_00151"
+    ],
+    "events": [
+      {
+        "event": "search",
+        "query": "centralized two-phase locking (2PL) distributed database definition lock manager coordinator transaction sites",
+        "filter": null,
+        "results": [
+          {
+            "id": "C_wiley_ddbms_ch5_00151",
+            "text": "Implementing 2PL for a centralized system is straightforward. Because a centralized system contains only one site, the lock manager sees all transactions and can control lock acquisition requests from all transaction monitors (TMs). In a distributed system, that is not the case. A transaction may enter the system at Site 1, but request a lock from Site 5. At the same time, a conflicting transaction may enter the system at Site 2 and request a lock from Site 4. If there isn’t any coordination between the lock managers at Sites 4 and 5, the conflict will not be detected, which may result in an inconsistent database. To deal with distribution issues, a common requirement for all alternatives for implementing 2PL in a distributed system is that the lock conflicts must be seen by at least one site. In the centralized implementation, the central lock manager sees all lock requests from all sites and enforces 2PL principles.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 47,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.4.1",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03252247488101534
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00152",
+            "text": "ntation, the central lock manager sees all lock requests from all sites and enforces 2PL principles. In the distributed implementation, the conflict must be detected by at least one site but may be detected by more than one site. In a distributed system, when the control of 2PL is given to one site, the algorithm is called centralized 2PL. Alsberg and Day first proposed the centralized 2PL in 1976 [Alsberg76]. When the control is shared by multiple sites, the algorithm is called primary copy 2PL and, finally, when the lock responsibility is given to all sites, the algorithm is called distributed 2PL. Centralized 2PL is an implementation of the two-phase locking approach in a distributed system where one site is designated as the central lock manager (CLM). All the sites in the environment know where the CLM is. Each site is directed to obtain locks, according to 2PL rules, from the CLM. To request a lock, a TM sends a lock request to the CLM instead of its local lock manager.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 47,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.4.1",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03177805800756621
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00077",
+            "text": "y—the locks are released prematurely. To ensure serializability, two-phase locking must be utilized. Two-phase locking (2PL) [Eswaran76] is a locking approach in which transactions do not interleave their lock acquisition and lock release. The approach consists of two phases. In the first phase, transactions only acquire locks and do not release any lock until all the locks they need have been granted. In the second phase, transactions start releasing locks and do not request any more locks. That is why the first phase of this locking approach is known as growing phase while the second phase is known as shrinking phase. The growing and shrinking terms reflect the number of locks a transaction is holding at any given point in time during its execution.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 20,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.1",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03036576949620428
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00158",
+            "text": "Variations of this approach have been implemented in IBM’s system R* by Mohan [Mohan86] and Tandem’s Nonstop SQL engine [Tandem87] [Tandem88]. Distributed 2PL requires each lock manager (LM) to manage the data items stored at its local site. Where the lock manager resides depends on the data distribution and/or replication. There are three alternatives:",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 48,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.4.1.2",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.030017921146953404
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00162",
+            "text": "ait, the system will be in a distributed deadlock (see distributed deadlock detection in Chapter 6). The direct result of this second scenario is a nonserializable schedule across the two sites. Example 5.10 also points out that, similar to the case in centralized systems, a 2PL implementation in a distributed system results in serializable schedules, but can cause deadlocks. Figure 5.29 shows an example implementing distributed 2PL in a four-site system. In this case, transactions T1 and T2 will create a distributed deadlock. A distributed deadlock is a deadlock that involves more than one site. For this example, each local site controlling a given item is responsible for handling the lock requests for that item. Site 2 is the lock manager for X while Site 3 manages the lock requests for data item Y. Note that at Sites 2 and 3, the local schedules are serializable.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 50,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.4.1.3",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.028814262023217248
+          }
+        ],
+        "context": "[C_wiley_ddbms_ch5_00151 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 47]\nImplementing 2PL for a centralized system is straightforward. Because a centralized system contains only one site, the lock manager sees all transactions and can control lock acquisition requests from all transaction monitors (TMs). In a distributed system, that is not the case. A transaction may enter the system at Site 1, but request a lock from Site 5. At the same time, a conflicting transaction may enter the system at Site 2 and request a lock from Site 4. If there isn’t any coordination between the lock managers at Sites 4 and 5, the conflict will not be detected, which may result in an inconsistent database. To deal with distribution issues, a common requirement for all alternatives for implementing 2PL in a distributed system is that the lock conflicts must be seen by at least one site. In the centralized implementation, the central lock manager sees all lock requests from all sites and enforces 2PL principles.\n\n[C_wiley_ddbms_ch5_00158 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 48]\nVariations of this approach have been implemented in IBM’s system R* by Mohan [Mohan86] and Tandem’s Nonstop SQL engine [Tandem87] [Tandem88]. Distributed 2PL requires each lock manager (LM) to manage the data items stored at its local site. Where the lock manager resides depends on the data distribution and/or replication. There are three alternatives:",
+        "context_ids": [
+          "C_wiley_ddbms_ch5_00151",
+          "C_wiley_ddbms_ch5_00158"
+        ]
+      },
+      {
+        "event": "answer"
+      }
+    ],
+    "elapsed_ms": 3610.0828000344336,
+    "retriever": "hybrid_wide",
+    "controller": "llm",
+    "model": "gpt-6-luna"
+  },
+  {
+    "query_id": "abs03",
+    "split": "test",
+    "question": "How many nodes does a Raft consensus cluster need for majority quorum of 5 voters?",
+    "answerable": false,
+    "status": "abstain",
+    "answer": "Không đủ bằng chứng để trả lời.",
+    "citations": [],
+    "events": [
+      {
+        "event": "search",
+        "query": "Raft consensus cluster majority quorum number of voters majority formula five voters",
+        "filter": null,
+        "results": [
+          {
+            "id": "C_wiley_ddbms_ch5_00063",
+            "text": "r those transactions that have used the results of one or more transactions contained within a saga. To address this issue, Garcia-Molina and his colleagues introduced the concept of nested sagas [Garcia- Molina91]. In a nested saga, a transaction within a saga can be a saga itself, and therefore contain steps that can also be compensated.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 17,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.2.5.1",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.01639344262295082
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00169",
+            "text": "In the above example, when S2 sends a message to S1, no adjustment is made. On the other hand, when S1 sends a message to S2, site S2’s clock will be advanced to 50. Implementing the basic TO algorithm in a distributed database is not cost effective due to the substantial number of messages required to enforce the read, pre-write, and commit phases of the algorithm. Implementation of the conservative TO algorithm proposed by Herman and Verjus [Herman79] in a distributed system is straightforward. The basic idea is to maintain a queue for each TM in the system at each site. For example, for a system with five sites and five TMs, each site’s scheduler will maintain five queues, one for each TM. Each TM sends the lock request to each site’s scheduler. The receiving scheduler puts the requests in that site’s queue, in increasing timestamp order (oldest first). It should be obvious that the queues for a given TM have the operations in the same order at all sites.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 52,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.4.2",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.01639344262295082
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00132",
+            "text": "cases illustrate some of the row- and table-level lock compatibilities as indicated in Figure 5.21. These cases are run against Oracle’s sample database schema called “Scott” (traditionally accessed with the password “tiger”). The Scott schema has two tables—DEPT and EMP—created as follows:\n\ncreate table DEPT ( DEPTNO NUMBER(2) NOT NULL , DNAME VARCHAR2(14), LOC VARCHAR2(13), PRIMARY KEY (DEPTNO));\n\ncreate table EMP ( EMPNO NUMBER(4) NOT NULL, ENAME VARCHAR2(10), JOB VARCHAR2(9), MGR NUMBER(4), HIREDATE DATE, SAL NUMBER(7,2), COMM NUMBER(7,2), DEPTNO NUMBER(2), PRIMARY KEY (EMPNO), FOREIGN KEY (DEPTNO) REFERENCES DEPT(DEPTNO)); To run these cases, we used Oracle’s SQL * PLUS tool (a command-based inter- active user interface) to set up two concurrent sessions with the server. Each session simulates one transaction. The session on the left represents transaction T1, which is\n\n221 CENTRALIZED DBE CONCURRENCY CONTROL",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 38,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.4.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.016129032258064516
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00135",
+            "text": "In this section, we extend the centralized concurrency control algorithms we discussed in Section 5.3 for a distributed database system. Distributed locking, timestamping, and\n\n223 CONCURRENCY CONTROL IN DISTRIBUTED DATABASE SYSTEMS\n\noptimistic concurrency control algorithms are discussed. As discussed before, when extending an algorithm that is designed to work on a centralized system, we have to consider the issue of control. In a centralized system, there is only one site and that site is the center of control. This is the site where transactions enter the system and where the concurrency control module of the DBMS resides. In a distributed system, on the other hand, the control may reside at a site different from the site where a transaction enters the system. The control may be centralized, residing at only one site, or distributed—where multiple sites cooperate to control execution of transactions.\n\n224 CONTROLLING CONCURRENCY",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 40,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.016129032258064516
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00004",
+            "text": "Each data item in the database has an associated cor- rectness assertion. For example, the social security number for an employee must be a unique value, age for an employee needs to be a positive number, an employee must work for one and only one department, the balance of an account needs to be positive and more than $100, and so on. These are all examples of assertions in a database. A database is said to be consistent if and only if the correctness criteria for all the data items of the database are satisfied.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 2,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.1.1",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.015873015873015872
+          }
+        ],
+        "context": "[C_wiley_ddbms_ch5_00063 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 17]\nr those transactions that have used the results of one or more transactions contained within a saga. To address this issue, Garcia-Molina and his colleagues introduced the concept of nested sagas [Garcia- Molina91]. In a nested saga, a transaction within a saga can be a saga itself, and therefore contain steps that can also be compensated.\n\n[C_wiley_ddbms_ch5_00169 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 52]\nIn the above example, when S2 sends a message to S1, no adjustment is made. On the other hand, when S1 sends a message to S2, site S2’s clock will be advanced to 50. Implementing the basic TO algorithm in a distributed database is not cost effective due to the substantial number of messages required to enforce the read, pre-write, and commit phases of the algorithm. Implementation of the conservative TO algorithm proposed by Herman and Verjus [Herman79] in a distributed system is straightforward. The basic idea is to maintain a queue for each TM in the system at each site. For example, for a system with five sites and five TMs, each site’s scheduler will maintain five queues, one for each TM. Each TM sends the lock request to each site’s scheduler. The receiving scheduler puts the requests in that site’s queue, in increasing timestamp order (oldest first). It should be obvious that the queues for a given TM have the operations in the same order at all sites.",
+        "context_ids": [
+          "C_wiley_ddbms_ch5_00063",
+          "C_wiley_ddbms_ch5_00169"
+        ]
+      },
+      {
+        "event": "search",
+        "query": "Raft majority quorum five voters how many nodes required majority quorum formula floor(n/2)+1",
+        "filter": null,
+        "results": [
+          {
+            "id": "C_wiley_ddbms_ch5_00175",
+            "text": "Each transaction issues its read requests for the data items contained within its read set during its read phase. Each transaction issues its write requests during the second phase, which is called the write phase. Based on the data items currently being read and written, we create a conflict graph for the classes to which the active transactions belong. A conflict graph is a nondirected graph that has a set of vertical, horizontal, and diagonal edges. A vertical edge connects two nodes within a class and indicates a conflict between two transactions within the class. A horizontal edge connects two nodes across two classes and indicates a write–write conflict across different classes. A diagonal edge connects two nodes within two different classes and indicates a write–read or a read–write conflict across two classes. The following is an example that shows how a conflict graph is created. Assume the following read sets and write sets for transactions T1, T2, and T3:",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 53,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.4.2.1",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.029910714285714284
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00169",
+            "text": "In the above example, when S2 sends a message to S1, no adjustment is made. On the other hand, when S1 sends a message to S2, site S2’s clock will be advanced to 50. Implementing the basic TO algorithm in a distributed database is not cost effective due to the substantial number of messages required to enforce the read, pre-write, and commit phases of the algorithm. Implementation of the conservative TO algorithm proposed by Herman and Verjus [Herman79] in a distributed system is straightforward. The basic idea is to maintain a queue for each TM in the system at each site. For example, for a system with five sites and five TMs, each site’s scheduler will maintain five queues, one for each TM. Each TM sends the lock request to each site’s scheduler. The receiving scheduler puts the requests in that site’s queue, in increasing timestamp order (oldest first). It should be obvious that the queues for a given TM have the operations in the same order at all sites.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 52,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.4.2",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.02976190476190476
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00145",
+            "text": "te 1 and the second conflict is “W3(X@2), W2(X@2),” which requires T3 to commit before T2 at Site 2. Note that the two operations “W2(X@1), W3(X@2)” and “W3(X@1), W2(X@2)” are not considered conflicts since the items are different (they are stored at different sites.) Now let’s revisit the distributed situation we considered in Example 5.7. In this example, X is stored at Site 1 and Y is stored at Site 2. We apply the site information to the schedules that we formed earlier. Again, it is not clear which of the six possible schedules is formed globally but, as we will explain later, that is not important. We have called these schedules GS1, GS2, . . . , GS6 as shown below:\n\nGS1 = R1(X@1), W1(Y@2), R2(Y@2), W2(X@1) GS2 = R2(Y@2), W2(X@1), R1(X@1), W1(Y@2) GS3 = R1(X@1), R2(Y@2), W1(Y@2), W2(X@1) GS4 = R1(X@1), R2(Y@2), W2(X@1), W1(Y@2) GS5 = R2(Y@2), R1(X@1), W1(Y@2), W2(X@1) GS6 = R2(Y@2), R1(X@1), W2(X@1), W1(Y@2)\n\n228 CONTROLLING CONCURRENCY",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 45,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.01639344262295082
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00237",
+            "text": "Figure 5.29. Example of primary 2PL implementation with a deadlock.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 51,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "figure",
+              "section": "5.4.2",
+              "figure_id": "wiley_ddbms_ch5_figure_5_29_p51",
+              "table_id": ""
+            },
+            "score": 0.01639344262295082
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00144",
+            "text": "re transaction T1 performs a read of X at Site 1 and then T2 performs a write on X at the same site. Obviously, these two operations are conflicting and both are happening at Site 1. The local concurrency control at Site 1 will detect this conflict and will require “T1 →T2” at this site. In this notation, data item “X@1” is not considered the same data item as “X@2.” In fact, X@1 and X@2 are two different copies of X and are stored at two different sites. Applying this concept to distributed systems, the global schedule “W2(X@1), W3(X@1), W3(X@2), W2(X@2)” contains two local conflicts. The first conflict is “W2(X@1), W3(X@1),” indicating that T2 must commit before T3 at Site 1 and the second conflict is “W3(X@2), W2(X@2),” which requires T3 to commit before T2 at Site 2.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 45,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.016129032258064516
+          }
+        ],
+        "context": "[C_wiley_ddbms_ch5_00063 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 17]\nr those transactions that have used the results of one or more transactions contained within a saga. To address this issue, Garcia-Molina and his colleagues introduced the concept of nested sagas [Garcia- Molina91]. In a nested saga, a transaction within a saga can be a saga itself, and therefore contain steps that can also be compensated.\n\n[C_wiley_ddbms_ch5_00169 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 52]\nIn the above example, when S2 sends a message to S1, no adjustment is made. On the other hand, when S1 sends a message to S2, site S2’s clock will be advanced to 50. Implementing the basic TO algorithm in a distributed database is not cost effective due to the substantial number of messages required to enforce the read, pre-write, and commit phases of the algorithm. Implementation of the conservative TO algorithm proposed by Herman and Verjus [Herman79] in a distributed system is straightforward. The basic idea is to maintain a queue for each TM in the system at each site. For example, for a system with five sites and five TMs, each site’s scheduler will maintain five queues, one for each TM. Each TM sends the lock request to each site’s scheduler. The receiving scheduler puts the requests in that site’s queue, in increasing timestamp order (oldest first). It should be obvious that the queues for a given TM have the operations in the same order at all sites.",
+        "context_ids": [
+          "C_wiley_ddbms_ch5_00063",
+          "C_wiley_ddbms_ch5_00169"
+        ]
+      },
+      {
+        "event": "search",
+        "query": "Raft consensus majority quorum five voters majority requires more than half nodes quorum formula",
+        "filter": null,
+        "results": [
+          {
+            "id": "C_wiley_ddbms_ch5_00175",
+            "text": "Each transaction issues its read requests for the data items contained within its read set during its read phase. Each transaction issues its write requests during the second phase, which is called the write phase. Based on the data items currently being read and written, we create a conflict graph for the classes to which the active transactions belong. A conflict graph is a nondirected graph that has a set of vertical, horizontal, and diagonal edges. A vertical edge connects two nodes within a class and indicates a conflict between two transactions within the class. A horizontal edge connects two nodes across two classes and indicates a write–write conflict across different classes. A diagonal edge connects two nodes within two different classes and indicates a write–read or a read–write conflict across two classes. The following is an example that shows how a conflict graph is created. Assume the following read sets and write sets for transactions T1, T2, and T3:",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 53,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.4.2.1",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03200204813108039
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00141",
+            "text": ", W2(X)” requires “T1 →T2” and “R2(Y), W1(Y)” requires “T2 →T1,” which cannot be satisfied together. • In LS4, “R1(X), W2(X)” requires “T1 →T2” and “R2(Y), W1(Y)” requires “T2 →T1,” which cannot be satisfied together. • In LS5, “R2(Y), W1(Y)” requires “T2 →T1” and “R1(X), W2(X)” requires “T1 →T2,” which cannot be satisfied together. • In LS6, “R2(Y), W1(Y)” requires “T2 →T1” and “R1(X), W2(X)” requires “T1 →T2,” which cannot be satisfied together. In the distributed system discussed above, the order in which the operations of these two transactions are performed globally is not clear. That is because there is no global\n\n227 CONCURRENCY CONTROL IN DISTRIBUTED DATABASE SYSTEMS",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 44,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.01639344262295082
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00238",
+            "text": "Figure 5.30. A conflict graph example for SDD-1.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 54,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "figure",
+              "section": "5.4.2.1",
+              "figure_id": "wiley_ddbms_ch5_figure_5_30_p54",
+              "table_id": ""
+            },
+            "score": 0.01639344262295082
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00236",
+            "text": "Figure 5.28. Example of centralized 2PL implementation.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 49,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "figure",
+              "section": "5.4.1.3",
+              "figure_id": "wiley_ddbms_ch5_figure_5_28_p49",
+              "table_id": ""
+            },
+            "score": 0.016129032258064516
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00169",
+            "text": "In the above example, when S2 sends a message to S1, no adjustment is made. On the other hand, when S1 sends a message to S2, site S2’s clock will be advanced to 50. Implementing the basic TO algorithm in a distributed database is not cost effective due to the substantial number of messages required to enforce the read, pre-write, and commit phases of the algorithm. Implementation of the conservative TO algorithm proposed by Herman and Verjus [Herman79] in a distributed system is straightforward. The basic idea is to maintain a queue for each TM in the system at each site. For example, for a system with five sites and five TMs, each site’s scheduler will maintain five queues, one for each TM. Each TM sends the lock request to each site’s scheduler. The receiving scheduler puts the requests in that site’s queue, in increasing timestamp order (oldest first). It should be obvious that the queues for a given TM have the operations in the same order at all sites.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 52,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.4.2",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.015873015873015872
+          }
+        ],
+        "context": "[C_wiley_ddbms_ch5_00063 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 17]\nr those transactions that have used the results of one or more transactions contained within a saga. To address this issue, Garcia-Molina and his colleagues introduced the concept of nested sagas [Garcia- Molina91]. In a nested saga, a transaction within a saga can be a saga itself, and therefore contain steps that can also be compensated.\n\n[C_wiley_ddbms_ch5_00169 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 52]\nIn the above example, when S2 sends a message to S1, no adjustment is made. On the other hand, when S1 sends a message to S2, site S2’s clock will be advanced to 50. Implementing the basic TO algorithm in a distributed database is not cost effective due to the substantial number of messages required to enforce the read, pre-write, and commit phases of the algorithm. Implementation of the conservative TO algorithm proposed by Herman and Verjus [Herman79] in a distributed system is straightforward. The basic idea is to maintain a queue for each TM in the system at each site. For example, for a system with five sites and five TMs, each site’s scheduler will maintain five queues, one for each TM. Each TM sends the lock request to each site’s scheduler. The receiving scheduler puts the requests in that site’s queue, in increasing timestamp order (oldest first). It should be obvious that the queues for a given TM have the operations in the same order at all sites.",
+        "context_ids": [
+          "C_wiley_ddbms_ch5_00063",
+          "C_wiley_ddbms_ch5_00169"
+        ]
+      },
+      {
+        "event": "search",
+        "query": "Raft consensus majority quorum five voters requires majority more than half voters quorum formula",
+        "filter": null,
+        "results": [
+          {
+            "id": "C_wiley_ddbms_ch5_00167",
+            "text": "’s assume site S1 generates a lot more transactions than site S2 does within a given period of time. If at time t1 the LCs at sites S1 and S2 are both set to 5, it is possible that, at time t2, S1’s clock might be 50 while S2’s clock might only be 20. From this point on, transactions at S1 will get lower priority than the ones at S2. To resolve this issue, we need to synchronize the logical clocks at S1 and S2. Note that it is only important to achieve\n\n234 CONTROLLING CONCURRENCY",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 51,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.4.2",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03055037313432836
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00141",
+            "text": ", W2(X)” requires “T1 →T2” and “R2(Y), W1(Y)” requires “T2 →T1,” which cannot be satisfied together. • In LS4, “R1(X), W2(X)” requires “T1 →T2” and “R2(Y), W1(Y)” requires “T2 →T1,” which cannot be satisfied together. • In LS5, “R2(Y), W1(Y)” requires “T2 →T1” and “R1(X), W2(X)” requires “T1 →T2,” which cannot be satisfied together. • In LS6, “R2(Y), W1(Y)” requires “T2 →T1” and “R1(X), W2(X)” requires “T1 →T2,” which cannot be satisfied together. In the distributed system discussed above, the order in which the operations of these two transactions are performed globally is not clear. That is because there is no global\n\n227 CONCURRENCY CONTROL IN DISTRIBUTED DATABASE SYSTEMS",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 44,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.4",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.01639344262295082
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00234",
+            "text": "Figure 5.26. Deadlocks in Oracle.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 43,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "figure",
+              "section": "5.4",
+              "figure_id": "wiley_ddbms_ch5_figure_5_26_p43",
+              "table_id": ""
+            },
+            "score": 0.01639344262295082
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00169",
+            "text": "In the above example, when S2 sends a message to S1, no adjustment is made. On the other hand, when S1 sends a message to S2, site S2’s clock will be advanced to 50. Implementing the basic TO algorithm in a distributed database is not cost effective due to the substantial number of messages required to enforce the read, pre-write, and commit phases of the algorithm. Implementation of the conservative TO algorithm proposed by Herman and Verjus [Herman79] in a distributed system is straightforward. The basic idea is to maintain a queue for each TM in the system at each site. For example, for a system with five sites and five TMs, each site’s scheduler will maintain five queues, one for each TM. Each TM sends the lock request to each site’s scheduler. The receiving scheduler puts the requests in that site’s queue, in increasing timestamp order (oldest first). It should be obvious that the queues for a given TM have the operations in the same order at all sites.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 52,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.4.2",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.016129032258064516
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00237",
+            "text": "Figure 5.29. Example of primary 2PL implementation with a deadlock.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 51,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "figure",
+              "section": "5.4.2",
+              "figure_id": "wiley_ddbms_ch5_figure_5_29_p51",
+              "table_id": ""
+            },
+            "score": 0.016129032258064516
+          }
+        ],
+        "context": "[C_wiley_ddbms_ch5_00063 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 17]\nr those transactions that have used the results of one or more transactions contained within a saga. To address this issue, Garcia-Molina and his colleagues introduced the concept of nested sagas [Garcia- Molina91]. In a nested saga, a transaction within a saga can be a saga itself, and therefore contain steps that can also be compensated.\n\n[C_wiley_ddbms_ch5_00169 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 52]\nIn the above example, when S2 sends a message to S1, no adjustment is made. On the other hand, when S1 sends a message to S2, site S2’s clock will be advanced to 50. Implementing the basic TO algorithm in a distributed database is not cost effective due to the substantial number of messages required to enforce the read, pre-write, and commit phases of the algorithm. Implementation of the conservative TO algorithm proposed by Herman and Verjus [Herman79] in a distributed system is straightforward. The basic idea is to maintain a queue for each TM in the system at each site. For example, for a system with five sites and five TMs, each site’s scheduler will maintain five queues, one for each TM. Each TM sends the lock request to each site’s scheduler. The receiving scheduler puts the requests in that site’s queue, in increasing timestamp order (oldest first). It should be obvious that the queues for a given TM have the operations in the same order at all sites.",
+        "context_ids": [
+          "C_wiley_ddbms_ch5_00063",
+          "C_wiley_ddbms_ch5_00169"
+        ]
+      },
+      {
+        "event": "search_limit"
+      }
+    ],
+    "elapsed_ms": 7126.153599994723,
+    "retriever": "hybrid_wide",
+    "controller": "llm",
+    "model": "gpt-6-luna"
+  },
+  {
+    "query_id": "abs04",
+    "split": "test",
+    "question": "What is VinUni AI20k lab attendance policy for late submissions?",
+    "answerable": false,
+    "status": "abstain",
+    "answer": "Không đủ bằng chứng để trả lời.",
+    "citations": [],
+    "events": [
+      {
+        "event": "search",
+        "query": "VinUni AI20k lab attendance policy late submissions",
+        "filter": null,
+        "results": [
+          {
+            "id": "C_wiley_ddbms_ch5_00100",
+            "text": "tion. This priority forces the younger transaction to wait for an older transaction to commit first. • Late Transaction Rule. An older transaction is not allowed to read or write a data item that has already been written by a younger transaction. This rule prevents the",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 27,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.2",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.032266458495966696
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00109",
+            "text": "N versions. Transaction Ti must read the most recent version of X that precedes it chronologically. This is the version of X that was written by the youngest transaction older than Ti, that is, version Xk in the diagram. In order to maintain consistency, the MV algorithm must reject Ti’s request to write X if any younger transaction has read X before Ti makes the request to write it. In this case, Ti is too late—meaning that Ti should have made its write request before the read requests from the younger transactions. Since age is used to enforce serializability, Ti should have written X before a younger transaction had read it. In Figure 5.18, we have outlined the MV algorithm. In this figure, data item X has N versions indicated as x1, x2, . . . , xN. This MV algorithm handles timestamping similar to the basic TO algorithm, with one exception.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 30,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.2.2",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03021353930031804
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00211",
+            "text": "Figure 5.3. An example of serial schedule.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 8,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "figure",
+              "section": "5.2.1.2",
+              "figure_id": "wiley_ddbms_ch5_figure_5_3_p8",
+              "table_id": ""
+            },
+            "score": 0.01639344262295082
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00182",
+            "text": "tive commit order of Ti and Tj is the same at both Site 1 and Site 2. Otherwise, Ti cannot validate. To apply this rule, Ti’s commitment at a site is delayed until all conflicting transactions that precede Ti in the serialization order are committed or aborted. Note that this requirement makes the algorithm pessimistic since Ti cannot commit as soon as it is validated at a site.\n\nOne way to implement optimistic concurrency control is to require that all local schedulers maintain a total commitment order for all local transactions. These sched- ulers are required to send their total commitment order graphs to the responsible global TM when they validate a transaction locally. The global TM receiving all such graphs will only commit the transaction globally if the order of committing the transaction in all local graphs is compatible. Otherwise, the global TM aborts the transaction.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 55,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.4.3",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.016129032258064516
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00115",
+            "text": "se cannot overlap with Tj’s CP phase. Tj has to start its CP after Ti has finished its EP. • Rule 2. For two transactions Ti and Tj, where Ti is writing what Tj is reading, Ti’s CP phase cannot overlap with Tj’s EP phase. Tj has to start its EC after Ti has finished its CP. • Rule 3. For two transactions Ti and Tj, where Ti is writing what Tj is writing, Ti’s CP phase cannot overlap with Tj’s CP phase. Tj has to start its CP after Ti has finished its CP. Unlike the previous algorithms, this algorithm uses a timestamp that is assigned to a transaction when the transaction is ready to validate. Delaying the assignment of the timestamp until validation time reduces the number of unnecessary rejections. Suppose transaction Tj has completed its EP. Tj can only be committed after it has been validated against all the other transactions currently running in the system. There are three cases that cover all possible conflicts between Tj and other transactions.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 32,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.3",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.015625
+          }
+        ],
+        "context": "[C_wiley_ddbms_ch5_00100 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 27]\ntion. This priority forces the younger transaction to wait for an older transaction to commit first. • Late Transaction Rule. An older transaction is not allowed to read or write a data item that has already been written by a younger transaction. This rule prevents the\n\n[C_wiley_ddbms_ch5_00109 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 30]\nN versions. Transaction Ti must read the most recent version of X that precedes it chronologically. This is the version of X that was written by the youngest transaction older than Ti, that is, version Xk in the diagram. In order to maintain consistency, the MV algorithm must reject Ti’s request to write X if any younger transaction has read X before Ti makes the request to write it. In this case, Ti is too late—meaning that Ti should have made its write request before the read requests from the younger transactions. Since age is used to enforce serializability, Ti should have written X before a younger transaction had read it. In Figure 5.18, we have outlined the MV algorithm. In this figure, data item X has N versions indicated as x1, x2, . . . , xN. This MV algorithm handles timestamping similar to the basic TO algorithm, with one exception.\n\n[C_wiley_ddbms_ch5_00211 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 8]\nFigure 5.3. An example of serial schedule.",
+        "context_ids": [
+          "C_wiley_ddbms_ch5_00100",
+          "C_wiley_ddbms_ch5_00109",
+          "C_wiley_ddbms_ch5_00211"
+        ]
+      },
+      {
+        "event": "search",
+        "query": "VinUni AI20k lab attendance policy late submissions late submission attendance",
+        "filter": null,
+        "results": [
+          {
+            "id": "C_wiley_ddbms_ch5_00100",
+            "text": "tion. This priority forces the younger transaction to wait for an older transaction to commit first. • Late Transaction Rule. An older transaction is not allowed to read or write a data item that has already been written by a younger transaction. This rule prevents the",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 27,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.2",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03278688524590164
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00109",
+            "text": "N versions. Transaction Ti must read the most recent version of X that precedes it chronologically. This is the version of X that was written by the youngest transaction older than Ti, that is, version Xk in the diagram. In order to maintain consistency, the MV algorithm must reject Ti’s request to write X if any younger transaction has read X before Ti makes the request to write it. In this case, Ti is too late—meaning that Ti should have made its write request before the read requests from the younger transactions. Since age is used to enforce serializability, Ti should have written X before a younger transaction had read it. In Figure 5.18, we have outlined the MV algorithm. In this figure, data item X has N versions indicated as x1, x2, . . . , xN. This MV algorithm handles timestamping similar to the basic TO algorithm, with one exception.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 30,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.2.2",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.016129032258064516
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00182",
+            "text": "tive commit order of Ti and Tj is the same at both Site 1 and Site 2. Otherwise, Ti cannot validate. To apply this rule, Ti’s commitment at a site is delayed until all conflicting transactions that precede Ti in the serialization order are committed or aborted. Note that this requirement makes the algorithm pessimistic since Ti cannot commit as soon as it is validated at a site.\n\nOne way to implement optimistic concurrency control is to require that all local schedulers maintain a total commitment order for all local transactions. These sched- ulers are required to send their total commitment order graphs to the responsible global TM when they validate a transaction locally. The global TM receiving all such graphs will only commit the transaction globally if the order of committing the transaction in all local graphs is compatible. Otherwise, the global TM aborts the transaction.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 55,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.4.3",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.016129032258064516
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00115",
+            "text": "se cannot overlap with Tj’s CP phase. Tj has to start its CP after Ti has finished its EP. • Rule 2. For two transactions Ti and Tj, where Ti is writing what Tj is reading, Ti’s CP phase cannot overlap with Tj’s EP phase. Tj has to start its EC after Ti has finished its CP. • Rule 3. For two transactions Ti and Tj, where Ti is writing what Tj is writing, Ti’s CP phase cannot overlap with Tj’s CP phase. Tj has to start its CP after Ti has finished its CP. Unlike the previous algorithms, this algorithm uses a timestamp that is assigned to a transaction when the transaction is ready to validate. Delaying the assignment of the timestamp until validation time reduces the number of unnecessary rejections. Suppose transaction Tj has completed its EP. Tj can only be committed after it has been validated against all the other transactions currently running in the system. There are three cases that cover all possible conflicts between Tj and other transactions.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 32,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.3",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.015873015873015872
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00171",
+            "text": "ues only when there is at least one request in every queue. There are two issues with this approach. First, this very conservative TO approach forces the system to execute transactions sequentially. Second, the queues for sites that do not have any transaction waiting to be processed will be empty. A site with an empty queue cannot process transactions in the other queues until a request from the corresponding site arrives. To circumvent this problem, we can require each site that does not have any transaction waiting to be processed to send a dummy request periodically in order ensure that it does not delay the processing of transactions from other sites. Note that using timestamps to order the commitment of transactions according to their age has an advantage over locking—in TO algorithms, local sites will only allow schedules that are age-sensitive (older transactions commit before younger transac- tions). For example, assume transaction T4 commits before T6 at Site 5.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 52,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.4.2",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.015625
+          }
+        ],
+        "context": "[C_wiley_ddbms_ch5_00100 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 27]\ntion. This priority forces the younger transaction to wait for an older transaction to commit first. • Late Transaction Rule. An older transaction is not allowed to read or write a data item that has already been written by a younger transaction. This rule prevents the\n\n[C_wiley_ddbms_ch5_00109 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 30]\nN versions. Transaction Ti must read the most recent version of X that precedes it chronologically. This is the version of X that was written by the youngest transaction older than Ti, that is, version Xk in the diagram. In order to maintain consistency, the MV algorithm must reject Ti’s request to write X if any younger transaction has read X before Ti makes the request to write it. In this case, Ti is too late—meaning that Ti should have made its write request before the read requests from the younger transactions. Since age is used to enforce serializability, Ti should have written X before a younger transaction had read it. In Figure 5.18, we have outlined the MV algorithm. In this figure, data item X has N versions indicated as x1, x2, . . . , xN. This MV algorithm handles timestamping similar to the basic TO algorithm, with one exception.\n\n[C_wiley_ddbms_ch5_00211 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 8]\nFigure 5.3. An example of serial schedule.",
+        "context_ids": [
+          "C_wiley_ddbms_ch5_00100",
+          "C_wiley_ddbms_ch5_00109",
+          "C_wiley_ddbms_ch5_00211"
+        ]
+      },
+      {
+        "event": "search",
+        "query": "VinUni AI20k lab attendance policy late submissions",
+        "filter": null,
+        "results": [
+          {
+            "id": "C_wiley_ddbms_ch5_00100",
+            "text": "tion. This priority forces the younger transaction to wait for an older transaction to commit first. • Late Transaction Rule. An older transaction is not allowed to read or write a data item that has already been written by a younger transaction. This rule prevents the",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 27,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.2",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.032266458495966696
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00109",
+            "text": "N versions. Transaction Ti must read the most recent version of X that precedes it chronologically. This is the version of X that was written by the youngest transaction older than Ti, that is, version Xk in the diagram. In order to maintain consistency, the MV algorithm must reject Ti’s request to write X if any younger transaction has read X before Ti makes the request to write it. In this case, Ti is too late—meaning that Ti should have made its write request before the read requests from the younger transactions. Since age is used to enforce serializability, Ti should have written X before a younger transaction had read it. In Figure 5.18, we have outlined the MV algorithm. In this figure, data item X has N versions indicated as x1, x2, . . . , xN. This MV algorithm handles timestamping similar to the basic TO algorithm, with one exception.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 30,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.2.2",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03021353930031804
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00211",
+            "text": "Figure 5.3. An example of serial schedule.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 8,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "figure",
+              "section": "5.2.1.2",
+              "figure_id": "wiley_ddbms_ch5_figure_5_3_p8",
+              "table_id": ""
+            },
+            "score": 0.01639344262295082
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00182",
+            "text": "tive commit order of Ti and Tj is the same at both Site 1 and Site 2. Otherwise, Ti cannot validate. To apply this rule, Ti’s commitment at a site is delayed until all conflicting transactions that precede Ti in the serialization order are committed or aborted. Note that this requirement makes the algorithm pessimistic since Ti cannot commit as soon as it is validated at a site.\n\nOne way to implement optimistic concurrency control is to require that all local schedulers maintain a total commitment order for all local transactions. These sched- ulers are required to send their total commitment order graphs to the responsible global TM when they validate a transaction locally. The global TM receiving all such graphs will only commit the transaction globally if the order of committing the transaction in all local graphs is compatible. Otherwise, the global TM aborts the transaction.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 55,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.4.3",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.016129032258064516
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00115",
+            "text": "se cannot overlap with Tj’s CP phase. Tj has to start its CP after Ti has finished its EP. • Rule 2. For two transactions Ti and Tj, where Ti is writing what Tj is reading, Ti’s CP phase cannot overlap with Tj’s EP phase. Tj has to start its EC after Ti has finished its CP. • Rule 3. For two transactions Ti and Tj, where Ti is writing what Tj is writing, Ti’s CP phase cannot overlap with Tj’s CP phase. Tj has to start its CP after Ti has finished its CP. Unlike the previous algorithms, this algorithm uses a timestamp that is assigned to a transaction when the transaction is ready to validate. Delaying the assignment of the timestamp until validation time reduces the number of unnecessary rejections. Suppose transaction Tj has completed its EP. Tj can only be committed after it has been validated against all the other transactions currently running in the system. There are three cases that cover all possible conflicts between Tj and other transactions.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 32,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.3",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.015625
+          }
+        ],
+        "context": "[C_wiley_ddbms_ch5_00100 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 27]\ntion. This priority forces the younger transaction to wait for an older transaction to commit first. • Late Transaction Rule. An older transaction is not allowed to read or write a data item that has already been written by a younger transaction. This rule prevents the\n\n[C_wiley_ddbms_ch5_00109 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 30]\nN versions. Transaction Ti must read the most recent version of X that precedes it chronologically. This is the version of X that was written by the youngest transaction older than Ti, that is, version Xk in the diagram. In order to maintain consistency, the MV algorithm must reject Ti’s request to write X if any younger transaction has read X before Ti makes the request to write it. In this case, Ti is too late—meaning that Ti should have made its write request before the read requests from the younger transactions. Since age is used to enforce serializability, Ti should have written X before a younger transaction had read it. In Figure 5.18, we have outlined the MV algorithm. In this figure, data item X has N versions indicated as x1, x2, . . . , xN. This MV algorithm handles timestamping similar to the basic TO algorithm, with one exception.\n\n[C_wiley_ddbms_ch5_00211 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 8]\nFigure 5.3. An example of serial schedule.",
+        "context_ids": [
+          "C_wiley_ddbms_ch5_00100",
+          "C_wiley_ddbms_ch5_00109",
+          "C_wiley_ddbms_ch5_00211"
+        ]
+      },
+      {
+        "event": "search",
+        "query": "VinUni AI20k lab attendance policy late submissions",
+        "filter": null,
+        "results": [
+          {
+            "id": "C_wiley_ddbms_ch5_00100",
+            "text": "tion. This priority forces the younger transaction to wait for an older transaction to commit first. • Late Transaction Rule. An older transaction is not allowed to read or write a data item that has already been written by a younger transaction. This rule prevents the",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 27,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.2",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.032266458495966696
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00109",
+            "text": "N versions. Transaction Ti must read the most recent version of X that precedes it chronologically. This is the version of X that was written by the youngest transaction older than Ti, that is, version Xk in the diagram. In order to maintain consistency, the MV algorithm must reject Ti’s request to write X if any younger transaction has read X before Ti makes the request to write it. In this case, Ti is too late—meaning that Ti should have made its write request before the read requests from the younger transactions. Since age is used to enforce serializability, Ti should have written X before a younger transaction had read it. In Figure 5.18, we have outlined the MV algorithm. In this figure, data item X has N versions indicated as x1, x2, . . . , xN. This MV algorithm handles timestamping similar to the basic TO algorithm, with one exception.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 30,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.2.2",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.03021353930031804
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00211",
+            "text": "Figure 5.3. An example of serial schedule.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 8,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "figure",
+              "section": "5.2.1.2",
+              "figure_id": "wiley_ddbms_ch5_figure_5_3_p8",
+              "table_id": ""
+            },
+            "score": 0.01639344262295082
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00182",
+            "text": "tive commit order of Ti and Tj is the same at both Site 1 and Site 2. Otherwise, Ti cannot validate. To apply this rule, Ti’s commitment at a site is delayed until all conflicting transactions that precede Ti in the serialization order are committed or aborted. Note that this requirement makes the algorithm pessimistic since Ti cannot commit as soon as it is validated at a site.\n\nOne way to implement optimistic concurrency control is to require that all local schedulers maintain a total commitment order for all local transactions. These sched- ulers are required to send their total commitment order graphs to the responsible global TM when they validate a transaction locally. The global TM receiving all such graphs will only commit the transaction globally if the order of committing the transaction in all local graphs is compatible. Otherwise, the global TM aborts the transaction.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 55,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.4.3",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.016129032258064516
+          },
+          {
+            "id": "C_wiley_ddbms_ch5_00115",
+            "text": "se cannot overlap with Tj’s CP phase. Tj has to start its CP after Ti has finished its EP. • Rule 2. For two transactions Ti and Tj, where Ti is writing what Tj is reading, Ti’s CP phase cannot overlap with Tj’s EP phase. Tj has to start its EC after Ti has finished its CP. • Rule 3. For two transactions Ti and Tj, where Ti is writing what Tj is writing, Ti’s CP phase cannot overlap with Tj’s CP phase. Tj has to start its CP after Ti has finished its CP. Unlike the previous algorithms, this algorithm uses a timestamp that is assigned to a transaction when the transaction is ready to validate. Delaying the assignment of the timestamp until validation time reduces the number of unnecessary rejections. Suppose transaction Tj has completed its EP. Tj can only be committed after it has been validated against all the other transactions currently running in the system. There are three cases that cover all possible conflicts between Tj and other transactions.",
+            "source_id": "wiley_ddbms_ch5",
+            "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+            "page": 32,
+            "metadata": {
+              "strategy_id": "C",
+              "chunk_type": "text",
+              "section": "5.3.3",
+              "figure_id": "",
+              "table_id": ""
+            },
+            "score": 0.015625
+          }
+        ],
+        "context": "[C_wiley_ddbms_ch5_00100 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 27]\ntion. This priority forces the younger transaction to wait for an older transaction to commit first. • Late Transaction Rule. An older transaction is not allowed to read or write a data item that has already been written by a younger transaction. This rule prevents the\n\n[C_wiley_ddbms_ch5_00109 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 30]\nN versions. Transaction Ti must read the most recent version of X that precedes it chronologically. This is the version of X that was written by the youngest transaction older than Ti, that is, version Xk in the diagram. In order to maintain consistency, the MV algorithm must reject Ti’s request to write X if any younger transaction has read X before Ti makes the request to write it. In this case, Ti is too late—meaning that Ti should have made its write request before the read requests from the younger transactions. Since age is used to enforce serializability, Ti should have written X before a younger transaction had read it. In Figure 5.18, we have outlined the MV algorithm. In this figure, data item X has N versions indicated as x1, x2, . . . , xN. This MV algorithm handles timestamping similar to the basic TO algorithm, with one exception.\n\n[C_wiley_ddbms_ch5_00211 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 8]\nFigure 5.3. An example of serial schedule.",
+        "context_ids": [
+          "C_wiley_ddbms_ch5_00100",
+          "C_wiley_ddbms_ch5_00109",
+          "C_wiley_ddbms_ch5_00211"
+        ]
+      },
+      {
+        "event": "search_limit"
+      }
+    ],
+    "elapsed_ms": 8675.934500002768,
+    "retriever": "hybrid_wide",
+    "controller": "llm",
+    "model": "gpt-6-luna"
+  }
+]

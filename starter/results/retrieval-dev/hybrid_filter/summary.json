@@ -1,0 +1,16 @@
+{
+  "strategy": "hybrid_filter",
+  "n": 20,
+  "hit1": 12,
+  "hit3": 18,
+  "context_hit": 3,
+  "hit1_rate": 0.6,
+  "hit3_rate": 0.9,
+  "context_evidence_rate": 0.15,
+  "avg_context_chars": 242.8,
+  "median_ms": 13.845350011251867,
+  "top_k": 3,
+  "budget_chars": 800,
+  "service_cost_usd": 0,
+  "split": "dev"
+}

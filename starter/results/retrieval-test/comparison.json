@@ -1,0 +1,50 @@
+[
+  {
+    "strategy": "tfidf",
+    "n": 5,
+    "hit1": 2,
+    "hit3": 4,
+    "context_hit": 0,
+    "hit1_rate": 0.4,
+    "hit3_rate": 0.8,
+    "context_evidence_rate": 0.0,
+    "avg_context_chars": 367,
+    "median_ms": 0.665400002617389,
+    "top_k": 3,
+    "budget_chars": 800,
+    "service_cost_usd": 0,
+    "split": "test"
+  },
+  {
+    "strategy": "hybrid_wide",
+    "n": 5,
+    "hit1": 3,
+    "hit3": 5,
+    "context_hit": 2,
+    "hit1_rate": 0.6,
+    "hit3_rate": 1.0,
+    "context_evidence_rate": 0.4,
+    "avg_context_chars": 867.2,
+    "median_ms": 15.311600000131875,
+    "top_k": 3,
+    "budget_chars": 1200,
+    "service_cost_usd": 0,
+    "split": "test"
+  },
+  {
+    "strategy": "hybrid_filter",
+    "n": 5,
+    "hit1": 3,
+    "hit3": 5,
+    "context_hit": 0,
+    "hit1_rate": 0.6,
+    "hit3_rate": 1.0,
+    "context_evidence_rate": 0.0,
+    "avg_context_chars": 182,
+    "median_ms": 13.359799981117249,
+    "top_k": 3,
+    "budget_chars": 800,
+    "service_cost_usd": 0,
+    "split": "test"
+  }
+]

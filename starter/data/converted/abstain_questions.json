@@ -1,0 +1,34 @@
+[
+  {
+    "id": "abs01",
+    "split": "dev",
+    "question": "How does MongoDB choose a shard key for automatic sharding in a replica set?",
+    "answerable": false,
+    "expected_behavior": "search_and_abstain",
+    "absence_reason": "Corpus is Wiley DDBMS Ch.5 concurrency; no MongoDB sharding content."
+  },
+  {
+    "id": "abs02",
+    "split": "dev",
+    "question": "What is the default deadlock detection interval in milliseconds for PostgreSQL 16?",
+    "answerable": false,
+    "expected_behavior": "search_and_abstain",
+    "absence_reason": "Chapter discusses locking concepts but not PostgreSQL 16 timer defaults."
+  },
+  {
+    "id": "abs03",
+    "split": "test",
+    "question": "How many nodes does a Raft consensus cluster need for majority quorum of 5 voters?",
+    "answerable": false,
+    "expected_behavior": "search_and_abstain",
+    "absence_reason": "Raft consensus is outside the indexed chapter scope."
+  },
+  {
+    "id": "abs04",
+    "split": "test",
+    "question": "What is VinUni AI20k lab attendance policy for late submissions?",
+    "answerable": false,
+    "expected_behavior": "search_and_abstain",
+    "absence_reason": "Organizational policy is not present in the textbook corpus."
+  }
+]

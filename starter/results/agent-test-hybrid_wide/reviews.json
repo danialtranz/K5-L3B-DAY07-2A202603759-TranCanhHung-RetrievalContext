@@ -1,0 +1,44 @@
+[
+  {
+    "query_id": "q21",
+    "answer_grade": 2,
+    "citation_support": [true],
+    "notes": "LLM paraphrases phantom+row-locking definition; cited chunk contains gold evidence."
+  },
+  {
+    "query_id": "q22",
+    "answer_grade": 2,
+    "citation_support": [true],
+    "notes": "Correct TO philosophy via transaction age/timestamp; cited 00096 supports coordinating access by age. Exact gold sentence is in sibling chunk 00098 also retrieved."
+  },
+  {
+    "query_id": "q23",
+    "answer_grade": 2,
+    "citation_support": [true],
+    "notes": "EP/VP/CP stated correctly with supporting citation."
+  },
+  {
+    "query_id": "q24",
+    "answer_grade": 0,
+    "citation_support": [],
+    "notes": "False abstention after 4 searches. Gold exclusive/shared modes appeared in last-search hit 00122 but pack_context kept stuck on 00130."
+  },
+  {
+    "query_id": "q25",
+    "answer_grade": 2,
+    "citation_support": [true],
+    "notes": "Centralized 2PL / central lock manager answer matches expected; citation 00151 discusses distributed 2PL coordination need (exact gold sentence in 00152 also ranked)."
+  },
+  {
+    "query_id": "abs03",
+    "abstention_correct": true,
+    "citation_support": [],
+    "notes": "Raft quorum outside corpus; searched then abstained."
+  },
+  {
+    "query_id": "abs04",
+    "abstention_correct": true,
+    "citation_support": [],
+    "notes": "Org policy absent; searched then abstained."
+  }
+]

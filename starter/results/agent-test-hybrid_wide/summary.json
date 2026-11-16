@@ -1,0 +1,10 @@
+{
+  "split": "test",
+  "retriever": "hybrid_wide",
+  "controller": "llm",
+  "n": 7,
+  "answered": 4,
+  "abstain": 3,
+  "error": 0,
+  "median_ms": 6257.071100000758
+}

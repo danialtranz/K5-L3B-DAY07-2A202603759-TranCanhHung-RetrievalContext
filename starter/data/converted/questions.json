@@ -1,0 +1,345 @@
+[
+  {
+    "id": "q01",
+    "split": "dev",
+    "question": "What is a database according to section 5.1.1?",
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 1,
+        "evidence": "A database is a collection of data items that have a name and a value."
+      }
+    ],
+    "expected_answer": "A collection of data items that have a name and a value."
+  },
+  {
+    "id": "q02",
+    "split": "dev",
+    "question": "When is a database said to be consistent?",
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 2,
+        "evidence": "A database is said to be consistent if and only if the correctness criteria for all the data items of the database are satisfied."
+      }
+    ],
+    "expected_answer": "Iff the correctness criteria for all data items are satisfied."
+  },
+  {
+    "id": "q03",
+    "split": "dev",
+    "question": "What are the ACID properties of a transaction?",
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 2,
+        "evidence": "There have been many references to the ACID properties (atomicity, con- sistency, isolation, and durability) of a transaction in the literature."
+      }
+    ],
+    "expected_answer": "Atomicity, consistency, isolation, and durability."
+  },
+  {
+    "id": "q04",
+    "split": "dev",
+    "question": "How does Jim Gray redefine what a transaction is?",
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 6,
+        "evidence": "A transaction is a collection of user actions mapped to operations against the data items of the database that, if runs uninterrupted by other transactions and by system failures, trans- fers the database from one consistent state into another consistent state."
+      }
+    ],
+    "expected_answer": "A collection of user actions that, if uninterrupted, moves the DB between consistent states; abort leaves DB unchanged."
+  },
+  {
+    "id": "q05",
+    "split": "dev",
+    "question": "What is a schedule in multitransaction processing?",
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 7,
+        "evidence": "A schedule is the total order of operations for a set of transactions. A schedule has sometimes been called a history in the industry."
+      }
+    ],
+    "expected_answer": "The total order of operations for a set of transactions (also called a history)."
+  },
+  {
+    "id": "q06",
+    "split": "dev",
+    "question": "What is a serial schedule?",
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 7,
+        "evidence": "A serial schedule is one that contains transactions whose operations do not overlap in time."
+      }
+    ],
+    "expected_answer": "A schedule where transactions' operations do not overlap in time; only one transaction runs at a time.",
+    "filter": {
+      "section": "5.2.1"
+    }
+  },
+  {
+    "id": "q07",
+    "split": "dev",
+    "question": "When does a conflict occur between two transactions?",
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 9,
+        "evidence": "A conflict occurs when two running transactions perform noncompatible operations on the same data item of the database."
+      }
+    ],
+    "expected_answer": "When they perform noncompatible operations on the same data item."
+  },
+  {
+    "id": "q08",
+    "split": "dev",
+    "question": "What anomaly can arise from schedule S1 where T1 reads X and later T2 writes X before T1 reads again?",
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 9,
+        "evidence": "Each of these schedules produces some anomalies that need to be dealt with by the scheduler. These anomalies are unrepeatable read anomaly (in S1), reading uncom- mitted data (or dirty read) anomaly (in S2), and overwriting uncommitted data anomaly (in S3)."
+      }
+    ],
+    "expected_answer": "Unrepeatable reads anomaly."
+  },
+  {
+    "id": "q09",
+    "split": "dev",
+    "question": "What is a blind write?",
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 10,
+        "evidence": "What causes the problem is allowing transactions to write an item without first reading it. This type of write is known as blind write."
+      }
+    ],
+    "expected_answer": "A write of an item without first reading it."
+  },
+  {
+    "id": "q10",
+    "split": "dev",
+    "question": "When are two schedules said to be equivalent?",
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 10,
+        "evidence": "Two schedules are said to be equivalent if they both produce the same state for the database and every transaction reads the same value(s) and writes the same value(s)."
+      }
+    ],
+    "expected_answer": "If they produce the same DB state and every transaction reads/writes the same values."
+  },
+  {
+    "id": "q11",
+    "split": "dev",
+    "question": "What does it mean for a schedule to be serializable?",
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 11,
+        "evidence": "A schedule is said to be serializable if it is equivalent to a serial schedule."
+      }
+    ],
+    "expected_answer": "It is equivalent to a serial schedule."
+  },
+  {
+    "id": "q12",
+    "split": "dev",
+    "question": "Using the total commitment order graph, when is a schedule serializable?",
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 12,
+        "evidence": "we say a schedule is serializable if and only if its TCO is acyclic."
+      }
+    ],
+    "expected_answer": "Iff its TCO graph is acyclic."
+  },
+  {
+    "id": "q13",
+    "split": "dev",
+    "question": "In a replicated database, when is schedule S globally serializable?",
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 14,
+        "evidence": "In a replicated database, schedule S is globally serializable if and only if all local schedules are serializable and the order of commitment for two conflicting transactions is the same at every site where the two transactions run."
+      }
+    ],
+    "expected_answer": "All local schedules serializable and conflicting transactions commit in the same order at every site where both run."
+  },
+  {
+    "id": "q14",
+    "split": "dev",
+    "question": "Is every view serializable schedule also conflict serializable?",
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 15,
+        "evidence": "However, not every view serializable schedule is conflict serializable."
+      }
+    ],
+    "expected_answer": "No — some view serializable schedules are not conflict serializable."
+  },
+  {
+    "id": "q15",
+    "split": "dev",
+    "question": "What is a saga according to Garcia-Molina?",
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 16,
+        "evidence": "A saga is an LLT that is written as a series of transactions that can be interleaved with other transactions."
+      }
+    ],
+    "expected_answer": "A long-lived transaction written as a series of transactions that can be interleaved with others.",
+    "filter": {
+      "section": "5.2.5"
+    }
+  },
+  {
+    "id": "q16",
+    "split": "dev",
+    "question": "What are the two basic approaches to enforcing isolation in a centralized system?",
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 19,
+        "evidence": "There are two basic approaches to enforcing isolation in a centralized system. They are based on the concepts of locking and timestamping."
+      }
+    ],
+    "expected_answer": "Locking and timestamping."
+  },
+  {
+    "id": "q17",
+    "split": "dev",
+    "question": "Why does one-phase locking fail to always enforce serializability?",
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 20,
+        "evidence": "transactions using 1PL do not keep their locks long enough to ensure serializability—the locks are released prematurely."
+      }
+    ],
+    "expected_answer": "Locks are released too early/prematurely, so schedules may be nonserializable.",
+    "filter": {
+      "section": "5.3.1"
+    }
+  },
+  {
+    "id": "q18",
+    "split": "dev",
+    "question": "What are the two phases of two-phase locking?",
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 20,
+        "evidence": "That is why the first phase of this locking approach is known as growing phase while the second phase is known as shrinking phase."
+      }
+    ],
+    "expected_answer": "Growing phase (acquire locks only) then shrinking phase (release locks, no new requests).",
+    "filter": {
+      "section": "5.3.1"
+    }
+  },
+  {
+    "id": "q19",
+    "split": "dev",
+    "question": "Does 2PL prevent deadlocks?",
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 22,
+        "evidence": "Although 2PL guarantees serializability, it does not prevent deadlocks"
+      }
+    ],
+    "expected_answer": "No — 2PL guarantees serializability but does not prevent deadlocks."
+  },
+  {
+    "id": "q20",
+    "split": "dev",
+    "question": "According to TABLE 5.1, which ANSI isolation level disallows dirty reads, unrepeatable reads, and phantoms?",
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 25,
+        "evidence": "Level 4\nSerializable\nNo\nNo\nNo"
+      }
+    ],
+    "expected_answer": "Level 4 Serializable — No/No/No."
+  },
+  {
+    "id": "q21",
+    "split": "test",
+    "question": "When do phantoms occur with row locking?",
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 25,
+        "evidence": "Phantoms occur when row locking is used and one transaction issues a SELECT, UPDATE, or DELETE using a predicate P, and another transaction creates a row (using INSERT or UPDATE) that satisfies P."
+      }
+    ],
+    "expected_answer": "When one txn uses predicate P and another creates a row satisfying P."
+  },
+  {
+    "id": "q22",
+    "split": "test",
+    "question": "What is the main philosophy behind timestamp ordering concurrency control?",
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 27,
+        "evidence": "The main philosophy behind the TO approach is to coordinate the access to a data item based on the age of the transactions involved."
+      }
+    ],
+    "expected_answer": "Coordinate access by transaction age; older should commit before younger."
+  },
+  {
+    "id": "q23",
+    "split": "test",
+    "question": "What three phases make up a transaction's life cycle in optimistic concurrency control?",
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 31,
+        "evidence": "life cycle is divided into three phases, execution phase (EP), validation phase (VP), and commit phase (CP)"
+      }
+    ],
+    "expected_answer": "Execution phase (EP), validation phase (VP), and commit phase (CP)."
+  },
+  {
+    "id": "q24",
+    "split": "test",
+    "question": "In Oracle, what lock modes are generally employed?",
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 34,
+        "evidence": "In general, Oracle employs exclusive and shared lock modes."
+      }
+    ],
+    "expected_answer": "Exclusive and shared lock modes.",
+    "filter": {
+      "section": "5.3.4"
+    }
+  },
+  {
+    "id": "q25",
+    "split": "test",
+    "question": "What is centralized 2PL in a distributed system?",
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 47,
+        "evidence": "Centralized 2PL is an implementation of the two-phase locking approach in a distributed system where one site is designated as the central lock manager (CLM)."
+      }
+    ],
+    "expected_answer": "2PL where one site is the central lock manager (CLM) and all sites obtain locks from it.",
+    "filter": {
+      "section": "5.4.1"
+    }
+  }
+]

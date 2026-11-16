@@ -1,0 +1,16 @@
+{
+  "strategy": "hybrid_wide",
+  "n": 20,
+  "hit1": 11,
+  "hit3": 17,
+  "context_hit": 11,
+  "hit1_rate": 0.55,
+  "hit3_rate": 0.85,
+  "context_evidence_rate": 0.55,
+  "avg_context_chars": 959,
+  "median_ms": 13.24420000310056,
+  "top_k": 3,
+  "budget_chars": 1200,
+  "service_cost_usd": 0,
+  "split": "dev"
+}

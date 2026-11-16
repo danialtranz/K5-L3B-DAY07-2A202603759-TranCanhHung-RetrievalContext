@@ -1,0 +1,10 @@
+{
+  "split": "dev",
+  "retriever": "hybrid_wide",
+  "controller": "llm",
+  "n": 22,
+  "answered": 13,
+  "abstain": 9,
+  "error": 0,
+  "median_ms": 6000.474400003441
+}

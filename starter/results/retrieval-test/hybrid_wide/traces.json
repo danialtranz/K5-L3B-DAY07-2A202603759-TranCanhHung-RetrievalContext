@@ -1,0 +1,377 @@
+[
+  {
+    "query_id": "q21",
+    "split": "test",
+    "question": "When do phantoms occur with row locking?",
+    "strategy": "hybrid_wide",
+    "top_k": 3,
+    "budget_chars": 1200,
+    "filter": null,
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 25,
+        "evidence": "Phantoms occur when row locking is used and one transaction issues a SELECT, UPDATE, or DELETE using a predicate P, and another transaction creates a row (using INSERT or UPDATE) that satisfies P."
+      }
+    ],
+    "results": [
+      {
+        "id": "C_wiley_ddbms_ch5_00090",
+        "text": "207 CENTRALIZED DBE CONCURRENCY CONTROL\n\ninserting a new row into the table. This new row for Saeed’s new account is exclusively locked by T2 until it commits. At this time, T2 releases the lock, and when T1 audits the table again, it gets a different value ($100 more than before) for Saeed’s accounts. This phenomenon is known as the phantom issue in relational databases. Phantoms occur when row locking is used and one transaction issues a SELECT, UPDATE, or DELETE using a predicate P, and another transaction creates a row (using INSERT or UPDATE) that satisfies P. In other words, the DBMS does not prevent creation of new rows satisfying the predicate of rows locked by another transaction. The phantom issue may or may not be an issue for a given application. In general, the impact of conflict in relational systems is dictated by the level of exposure of items between two transactions.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 25,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.3.1.4",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.032266458495966696,
+        "hit": true
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00089",
+        "text": "t get an SIX lock on table R, and then, occasionally, get an X lock for the rows it wants to change. If T3 wants to use an index to read only part of R, then T3 gets an IS lock on R, and repeatedly gets an S lock on each row it needs to access.\n\nThe term “phantom” refers to an issue that is specific to the way relational DBMSs use row-level locking. Phantoms occur when one transac- tion’s updates or inserts change the scope of rows that another transaction has locked. Figure 5.14 illustrates how the phantom issue occurs between two transactions working on the rows of the same table. In this example, transaction T1 locks and reads the total of Saeed’s account balances first. The first select statement in T1 finishes before the insert statement of T2 starts. Although T1 has a shared lock on the rows of the table, it does not prevent T2 from",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 24,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.3.1.3",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.032018442622950824,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00094",
+        "text": "be granted to T2 since it is not compatible with the S lock that T1 is holding on this index block. Therefore, T2 cannot insert the new row until after T1 finishes, which prevents the phantom issue. If there were no such index on the column that the predicate is based on, transaction T1 would need to lock all the employee table pages to prevent phantoms. In predicate locking the DBMS deals with the phantom issue by not only locking all the rows that satisfy the predicate of the SQL statements, but also by denying any insertions of new rows and/or updates of existing rows that would change the scope of a conflicting transaction. Index page locking is a special case of predicate locking for which an index provides an efficient implementation of the predicate lock. Because of the overhead associated with the implementation of predicate locking, many DBMSs (such as Microsoft SQL Server and Sybase) use index page locking to deal with the phantom issue.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 26,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.3.1.4",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.03149801587301587,
+        "hit": false
+      }
+    ],
+    "context": "[C_wiley_ddbms_ch5_00090 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 25]\n207 CENTRALIZED DBE CONCURRENCY CONTROL\n\ninserting a new row into the table. This new row for Saeed’s new account is exclusively locked by T2 until it commits. At this time, T2 releases the lock, and when T1 audits the table again, it gets a different value ($100 more than before) for Saeed’s accounts. This phenomenon is known as the phantom issue in relational databases. Phantoms occur when row locking is used and one transaction issues a SELECT, UPDATE, or DELETE using a predicate P, and another transaction creates a row (using INSERT or UPDATE) that satisfies P. In other words, the DBMS does not prevent creation of new rows satisfying the predicate of rows locked by another transaction. The phantom issue may or may not be an issue for a given application. In general, the impact of conflict in relational systems is dictated by the level of exposure of items between two transactions.",
+    "context_ids": [
+      "C_wiley_ddbms_ch5_00090"
+    ],
+    "context_chars": 1135,
+    "elapsed_ms": 73.45169998006895,
+    "hit1": true,
+    "hit3": true,
+    "context_hit": true
+  },
+  {
+    "query_id": "q22",
+    "split": "test",
+    "question": "What is the main philosophy behind timestamp ordering concurrency control?",
+    "strategy": "hybrid_wide",
+    "top_k": 3,
+    "budget_chars": 1200,
+    "filter": null,
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 27,
+        "evidence": "The main philosophy behind the TO approach is to coordinate the access to a data item based on the age of the transactions involved."
+      }
+    ],
+    "results": [
+      {
+        "id": "C_wiley_ddbms_ch5_00096",
+        "text": "As discussed in Section 5.3.1, locking-based concurrency control algorithms use locks to isolate the data items that one transaction is working with from other transactions—the other transactions are denied access to those locked data items. A transaction’s timestamp (age) can also be used to coordinate concurrent access to the database’s data items in such a way that the schedule is conflict serializable. This approach is known as timestamp ordering (TO) [Bernstein80b]. In TO concurrency control, each transaction is given a timestamp when it enters the system. The timestamp is set to the computer’s clock reading at the time that the transaction enters the system. Since a single processor can only handle one transaction entry at a time, timestamps generated by the system are unique for a single computer. Handling only one transaction at a time is a necessary requirement since each transaction must be given a unique timestamp. The timestamp acts as the “birthdate” of the transaction.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 27,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.3.2",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.032266458495966696,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00164",
+        "text": "The basic concept of timestamp concurrency control algorithms in centralized systems can easily be extended to a distributed database. Since both the basic and conserva- tive TO algorithms (discussed earlier in this chapter) rely on timestamps for resolving conflicts, it is important that timestamps be a good representative of the relative age of each transaction. In a centralized system, the physical clock reading is used as the timestamp. The physical clock obviously produces a true indication of each trans- action’s age—the smaller the timestamp the older the transaction is. As mentioned earlier, we do not actually have to use the physical clock reading of the local system as the timestamp. We can use a logical clock (LC) that is incremented for each event in the system as the transaction timestamp, since it provides for the same relative ordering for a transaction’s age.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 50,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.4.2",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.03125,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00098",
+        "text": "ubscripts, instead of an actual physical clock reading for timestamps, will simplify our discussion. The main philosophy behind the TO approach is to coordinate the access to a data item based on the age of the transactions involved. TO concurrency control based algorithms force transactions to commit in the order dictated by their ages. It is expected that an older transaction must commit before a younger transaction, since the older transaction enters the system before the younger one does. For example, if transactions T1, T2, . . . , T10 are all running in the system, then TO concurrency control expects that T1 must commit before T2, T2 must commits before T3, and so on. This does not mean that all 10 transactions will commit, but it does mean that those that do commit must be committed in the proper order (using their ages).",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 27,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.3.2",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.031054405392392875,
+        "hit": true
+      }
+    ],
+    "context": "[C_wiley_ddbms_ch5_00164 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 50]\nThe basic concept of timestamp concurrency control algorithms in centralized systems can easily be extended to a distributed database. Since both the basic and conserva- tive TO algorithms (discussed earlier in this chapter) rely on timestamps for resolving conflicts, it is important that timestamps be a good representative of the relative age of each transaction. In a centralized system, the physical clock reading is used as the timestamp. The physical clock obviously produces a true indication of each trans- action’s age—the smaller the timestamp the older the transaction is. As mentioned earlier, we do not actually have to use the physical clock reading of the local system as the timestamp. We can use a logical clock (LC) that is incremented for each event in the system as the transaction timestamp, since it provides for the same relative ordering for a transaction’s age.",
+    "context_ids": [
+      "C_wiley_ddbms_ch5_00164"
+    ],
+    "context_chars": 1125,
+    "elapsed_ms": 13.825800037011504,
+    "hit1": false,
+    "hit3": true,
+    "context_hit": false
+  },
+  {
+    "query_id": "q23",
+    "split": "test",
+    "question": "What three phases make up a transaction's life cycle in optimistic concurrency control?",
+    "strategy": "hybrid_wide",
+    "top_k": 3,
+    "budget_chars": 1200,
+    "filter": null,
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 31,
+        "evidence": "life cycle is divided into three phases, execution phase (EP), validation phase (VP), and commit phase (CP)"
+      }
+    ],
+    "results": [
+      {
+        "id": "C_wiley_ddbms_ch5_00113",
+        "text": "oposal that is extended for distributed database, we will only discuss the timestamp-based approach. Interested readers are referred to [Kung81] for the details of the locking-based optimistic concurrency control algorithm. In optimistic concurrency control, a transaction’s life cycle is divided into three phases, execution phase (EP), validation phase (VP), and commit phase (CP) as outlined below: • Execution Phase (EP). In this phase, transaction performs its actions and buffers the new values for data items in memory. • Validation Phase (VP). In this phase, transaction validates itself to assure that committing its changes to the database does not destroy the consistency of the database (i.e., generates serializable schedule). • Commit Phase (CP). In this phase, transaction writes its changes from memory to the database on disk.\n\n214 CONTROLLING CONCURRENCY",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 31,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.3.3",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.032266458495966696,
+        "hit": true
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00072",
+        "text": "We can also classify the concurrency control algorithms based on when serializabil- ity is enforced. A system can have a high rate of conflicts or a low rate of conflicts. Concurrency control algorithms that work in systems with a high rate of conflict are called pessimistic concurrency control algorithms. Concurrency control algorithms that work in systems with a low rate of conflicts are called optimistic concurrency control algorithms. For pessimistic concurrency control (where the conflict rate is high), we try to identify conflicts and synchronize transactions as soon as possible. Transactions executing in a system with a high conflict rate are more likely to need a restart than those executing in a system with a lower conflict rate. When a transac- tion needs to restart, we must undo all of the operations it has performed up to that point.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 19,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.3",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.03128054740957967,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00227",
+        "text": "Figure 5.19. Optimistic concurrency control algorithm overlap cases.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 33,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "figure",
+          "section": "5.3.4",
+          "figure_id": "wiley_ddbms_ch5_figure_5_19_p33",
+          "table_id": ""
+        },
+        "score": 0.031009615384615385,
+        "hit": false
+      }
+    ],
+    "context": "[C_wiley_ddbms_ch5_00113 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 31]\noposal that is extended for distributed database, we will only discuss the timestamp-based approach. Interested readers are referred to [Kung81] for the details of the locking-based optimistic concurrency control algorithm. In optimistic concurrency control, a transaction’s life cycle is divided into three phases, execution phase (EP), validation phase (VP), and commit phase (CP) as outlined below: • Execution Phase (EP). In this phase, transaction performs its actions and buffers the new values for data items in memory. • Validation Phase (VP). In this phase, transaction validates itself to assure that committing its changes to the database does not destroy the consistency of the database (i.e., generates serializable schedule). • Commit Phase (CP). In this phase, transaction writes its changes from memory to the database on disk.\n\n214 CONTROLLING CONCURRENCY",
+    "context_ids": [
+      "C_wiley_ddbms_ch5_00113"
+    ],
+    "context_chars": 1110,
+    "elapsed_ms": 16.388799995183945,
+    "hit1": true,
+    "hit3": true,
+    "context_hit": true
+  },
+  {
+    "query_id": "q24",
+    "split": "test",
+    "question": "In Oracle, what lock modes are generally employed?",
+    "strategy": "hybrid_wide",
+    "top_k": 3,
+    "budget_chars": 1200,
+    "filter": null,
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 34,
+        "evidence": "In general, Oracle employs exclusive and shared lock modes."
+      }
+    ],
+    "results": [
+      {
+        "id": "C_wiley_ddbms_ch5_00124",
+        "text": "Oracle also utilizes intention locking (see Section 5.3.1.3) combined with row- and table-level DML lock types to enforce seri- alizability as outlined below. Row-level locking is the default locking granule for Oracle. Oracle Row-Level Locks There are two flavors of row-level locks: 1. Shared Row-Level Lock. This type of lock is acquired by a read-only transaction. A read lock like this never blocks writers (as discussed earlier).",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 34,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.3.4.3",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.030886196246139225,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00131",
+        "text": "Oracle automatically converts a table lock of lower restric- Oracle Lock Escalation tiveness to one of higher restrictiveness as appropriate. As an example, assume a transaction issues a “SELECT . . . FOR UPDATE” statement. In this case, the trans- action acquires an exclusive row lock and a row share table lock on the table. If this transaction later updates one or more of the locked rows, the row share table lock is automatically converted to a row exclusive table lock by Oracle. As another example, if a transaction holds many row locks on a table, the database will automatically escalate the row locks to a single table lock for the transaction. Figure 5.21 summarizes the lock types and com- Oracle Lock Compatibility Matrix patibilities that are supported by Oracle 10 g. Example 5.6 The following cases illustrate some of the row- and table-level lock compatibilities as indicated in Figure 5.21.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 38,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.3.4.4",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.030834914611005692,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00121",
+        "text": "implements levels two and four of the four ANSI isolation levels. These are the read committed level and the serializable level. Oracle also supports read-only transac- tions. A read-only transaction reads only those changes that were committed before the transaction began. Read-only transactions cannot contain any INSERT, UPDATE, or DELETE statements. In Oracle, all locks acquired by statements within a transaction are held for the duration of the transaction, that is, it implements strict 2PL. The locks are released when the transaction holding the locks commits or rolls back. In addition, Oracle implements the concept of a savepoint. A savepoint is a point in the transaction to which the changes can be rolled back. Oracle releases locks acquired after a savepoint when rolling back to the savepoint, but continues to hold those locks obtained before the savepoint. In general, Oracle employs exclusive and shared lock modes.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 34,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.3.4",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.030536130536130537,
+        "hit": true
+      }
+    ],
+    "context": "[C_wiley_ddbms_ch5_00124 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 34]\nOracle also utilizes intention locking (see Section 5.3.1.3) combined with row- and table-level DML lock types to enforce seri- alizability as outlined below. Row-level locking is the default locking granule for Oracle. Oracle Row-Level Locks There are two flavors of row-level locks: 1. Shared Row-Level Lock. This type of lock is acquired by a read-only transaction. A read lock like this never blocks writers (as discussed earlier).",
+    "context_ids": [
+      "C_wiley_ddbms_ch5_00124"
+    ],
+    "context_chars": 673,
+    "elapsed_ms": 12.903900002129376,
+    "hit1": false,
+    "hit3": true,
+    "context_hit": false
+  },
+  {
+    "query_id": "q25",
+    "split": "test",
+    "question": "What is centralized 2PL in a distributed system?",
+    "strategy": "hybrid_wide",
+    "top_k": 3,
+    "budget_chars": 1200,
+    "filter": null,
+    "gold": [
+      {
+        "source_id": "wiley_ddbms_ch5",
+        "page": 47,
+        "evidence": "Centralized 2PL is an implementation of the two-phase locking approach in a distributed system where one site is designated as the central lock manager (CLM)."
+      }
+    ],
+    "results": [
+      {
+        "id": "C_wiley_ddbms_ch5_00152",
+        "text": "ntation, the central lock manager sees all lock requests from all sites and enforces 2PL principles. In the distributed implementation, the conflict must be detected by at least one site but may be detected by more than one site. In a distributed system, when the control of 2PL is given to one site, the algorithm is called centralized 2PL. Alsberg and Day first proposed the centralized 2PL in 1976 [Alsberg76]. When the control is shared by multiple sites, the algorithm is called primary copy 2PL and, finally, when the lock responsibility is given to all sites, the algorithm is called distributed 2PL. Centralized 2PL is an implementation of the two-phase locking approach in a distributed system where one site is designated as the central lock manager (CLM). All the sites in the environment know where the CLM is. Each site is directed to obtain locks, according to 2PL rules, from the CLM. To request a lock, a TM sends a lock request to the CLM instead of its local lock manager.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 47,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.4.1",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.03252247488101534,
+        "hit": true
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00236",
+        "text": "Figure 5.28. Example of centralized 2PL implementation.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 49,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "figure",
+          "section": "5.4.1.3",
+          "figure_id": "wiley_ddbms_ch5_figure_5_28_p49",
+          "table_id": ""
+        },
+        "score": 0.03177805800756621,
+        "hit": false
+      },
+      {
+        "id": "C_wiley_ddbms_ch5_00162",
+        "text": "ait, the system will be in a distributed deadlock (see distributed deadlock detection in Chapter 6). The direct result of this second scenario is a nonserializable schedule across the two sites. Example 5.10 also points out that, similar to the case in centralized systems, a 2PL implementation in a distributed system results in serializable schedules, but can cause deadlocks. Figure 5.29 shows an example implementing distributed 2PL in a four-site system. In this case, transactions T1 and T2 will create a distributed deadlock. A distributed deadlock is a deadlock that involves more than one site. For this example, each local site controlling a given item is responsible for handling the lock requests for that item. Site 2 is the lock manager for X while Site 3 manages the lock requests for data item Y. Note that at Sites 2 and 3, the local schedules are serializable.",
+        "source_id": "wiley_ddbms_ch5",
+        "source": "D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf",
+        "page": 50,
+        "metadata": {
+          "strategy_id": "C",
+          "chunk_type": "text",
+          "section": "5.4.1.3",
+          "figure_id": "",
+          "table_id": ""
+        },
+        "score": 0.0315136476426799,
+        "hit": false
+      }
+    ],
+    "context": "[C_wiley_ddbms_ch5_00236 | D:/src/AIInAction/K5-L3B-Day06-TranCanhHung-2A202603759-DataIngestionEngineering/assets/Distributed Database Management Systems A Practical Approach Management, Rahimi, Haug, Wiley-IEEE, 2010 (2).pdf | page 49]\nFigure 5.28. Example of centralized 2PL implementation.",
+    "context_ids": [
+      "C_wiley_ddbms_ch5_00236"
+    ],
+    "context_chars": 293,
+    "elapsed_ms": 15.311600000131875,
+    "hit1": true,
+    "hit3": true,
+    "context_hit": false
+  }
+]
